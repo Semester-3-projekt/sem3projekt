@@ -1,19 +1,5 @@
 var mongoose = require( 'mongoose' );
 
-/*
-
-Note:
-To this test project as it is:
-
-Start your MongoDB database.
-Start mongo.exe and do:
-  use testdb
-  db.testusers.insert({userName : "Lars", email :"lam@cphbusiness.dk",pw: "test",created : new Date()})
-  db.testusers.insert({userName : "Henrik", email :"hsty@cphbusiness.dk",pw: "test",created : new Date()})
-  db.testusers.insert({userName : "Tobias", email :"tog@cphbusiness.dk",pw: "test",created : new Date()})
-  db.testusers.insert({userName : "Anders", email :"aka@cphbusiness.dk",pw: "test",created : new Date()})
-
-*/
 var dbURI;
 
 //This is set by the backend tests
@@ -21,7 +7,7 @@ if( typeof global.TEST_DATABASE != "undefined" ) {
   dbURI = global.TEST_DATABASE;
 }
 else{
-  dbURI = 'mongodb://localhost/testdb';
+  dbURI = 'mongodb://sem3projekt:sem3projekt@ds053160.mongolab.com:53160/sem3projekt';
 }
 
 mongoose.connect(dbURI);
@@ -46,15 +32,51 @@ process.on('SIGINT', function() {
   });
 });
 
-
-/** User SCHEMA **/
-/** Replace this Schema with your own(s) **/
 var usersSchema = new mongoose.Schema({
   userName : String,
+  firstName : String,
+  lastName : String,
   email: {type: String, unique: true},
-  pw: String,
+  address : String,
   created: { type: Date, default: new Date() }
 });
 
 mongoose.model( 'User', usersSchema,"testusers" );
 
+
+
+var studentSchema = new mongoose.schema({
+  studyPoints : number
+});
+exports.studentModel = mongoose.model('student', studentSchema)
+
+var teacherSchema = new mongoose.schema({
+
+});
+
+exports.teacherModel = mongoose.model('teacher', teacherSchema)
+
+var pointSchema = new mongoose.schema({
+  value : number,
+  date : Date
+});
+exports.pointModel = mongoose.model('point', pointSchema)
+
+var taskSchema = new mongoose.schema({
+  taskId : String,
+  maxPoint : number
+});
+exports.taskModel = mongoose.model('task',taskSchema)
+
+var periodSchema = new mongoose.schema({
+  periodId : String,
+  subject: String
+});
+
+exports.periodModel = mongoose.model('period', periodSchema)
+
+var semesterSchema = new mongoose.schema({
+  semesterId : String
+});
+
+exports.semesterModel = mongoose.model('semester', semesterSchema)
