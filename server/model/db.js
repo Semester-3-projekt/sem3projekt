@@ -45,37 +45,37 @@ mongoose.model( 'User', usersSchema,"testusers" );
 
 
 
-var studentSchema = new mongoose.schema({
-  studyPoints : number
+var studentSchema = new mongoose.Schema({
+  studyPoints : Number
 });
 exports.studentModel = mongoose.model('student', studentSchema)
 
-var teacherSchema = new mongoose.schema({
+var teacherSchema = new mongoose.Schema({
 
 });
 
 exports.teacherModel = mongoose.model('teacher', teacherSchema)
 
-var pointSchema = new mongoose.schema({
-  value : number,
+var pointSchema = new mongoose.Schema({
+  value : Number,
   date : Date
 });
 exports.pointModel = mongoose.model('point', pointSchema)
 
-var taskSchema = new mongoose.schema({
+var taskSchema = new mongoose.Schema({
   taskId : String,
-  maxPoint : number
+  maxPoint : Number
 });
 exports.taskModel = mongoose.model('task',taskSchema)
 
-var periodSchema = new mongoose.schema({
+var periodSchema = new mongoose.Schema({
   periodId : String,
   subject: String
 });
 
 exports.periodModel = mongoose.model('period', periodSchema)
 
-var semesterSchema = new mongoose.schema({
+var semesterSchema = new mongoose.Schema({
   semesterId : String
 });
 
