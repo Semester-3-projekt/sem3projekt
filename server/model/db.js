@@ -32,18 +32,16 @@ process.on('SIGINT', function() {
   });
 });
 
-var usersSchema = new mongoose.Schema({
+var personsSchema = new mongoose.Schema({
   userName : String,
+  role : String,
   firstName : String,
   lastName : String,
   email: {type: String, unique: true},
   address : String,
   created: { type: Date, default: new Date() }
 });
-
-mongoose.model( 'User', usersSchema,"testusers" );
-
-
+exports.personsModel = mongoose.model('Person', personsSchema);
 
 var studentSchema = new mongoose.Schema({
   studyPoints : Number
