@@ -12,10 +12,10 @@ angular.module('myAppRename.view3', ['ngRoute'])
 .controller('View3Ctrl', function ($scope, $http) {
     $http({
       method: 'GET',
-      url: 'adminApi/user'
+      url: 'adminApi/getPersons'
     }).
       success(function (data, status, headers, config) {
-        $scope.users = data;
+        $scope.person = data;
          $scope.error = null;
       }).
       error(function (data, status, headers, config) {

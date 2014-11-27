@@ -2,10 +2,16 @@ var personsModel = require('./model/db').personsModel;
 
 var getStudents = function(person, done) {
 
-    personsModel.find({person : person}).exec(function (err, res) {
+    personsModel.find({person : email}).exec(function (err, res) {
         if (err) done(err);
 
-        else done(null, res);
+        else {
+            var toReturn = [];
+            for(var i in res){
+                toReturn.push({firstName: res[i].firstName, lastName: res[i].lastName})
+            }
+        }
+        done(null, toReturn);
     });
 };
 
