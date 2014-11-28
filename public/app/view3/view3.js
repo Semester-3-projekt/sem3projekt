@@ -15,7 +15,7 @@ angular.module('myAppRename.view3', ['ngRoute'])
       url: 'adminApi/getPersons'
     }).
       success(function (data, status, headers, config) {
-        $scope.person = data;
+        $scope.foundPersons = data;
          $scope.error = null;
       }).
       error(function (data, status, headers, config) {

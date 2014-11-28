@@ -41,7 +41,7 @@ var personsSchema = new mongoose.Schema({
   address : String,
   created: { type: Date, default: new Date() }
 });
-exports.personsModel = mongoose.model('Person', personsSchema);
+exports.personsModel = mongoose.model('Person', personsSchema, 'person');
 
 var studentSchema = new mongoose.Schema({
   studyPoints : Number
