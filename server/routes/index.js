@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
+var http = require('http');
+var request = require('request');
 
 
 /* GET home page. */
@@ -8,11 +10,14 @@ router.get('/', function(req, res) {
   res.redirect("app/index.html")
 });
 
-router.get('/authenticate', function(req, res){
+router.post('/authenticate', function(req, res){
     var username = req.body.username;
-    var username = req.body.username;
+    var password = req.body.password;
+    console.log("username: " + username);
+    console.log("password: " + password);
+
     var user = {
-        uri: 'http://somethingsomething:8080/connect/'+username+'+'+password,
+        uri: 'http://localhost:8080/connect/'+username+'+'+password,
         method: 'get'
     };
     request(user, function(error, response, body){
