@@ -3,53 +3,45 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 
 
-
-
-
 /* GET home page. */
 router.get('/', function(req, res) {
   res.redirect("app/index.html")
 });
 
-
-router.post('/authenticate', function (req, res) {
-  //TODO: Go and get UserName Password from "somewhere"
-  //if is invalid, return 401
-   if (req.body.username === 'student' && req.body.password === 'test') {
-    var profile = {
-      username: 'Bo the Student',
-      role: "user",
-      id: 1000
+router.get('/authenticate', function(req, res){
+    var username = req.body.username;
+    var username = req.body.username;
+    var user = {
+        uri: 'http://somethingsomething:8080/connect/'+username+'+'+password,
+        method: 'get'
     };
-    // We are sending the profile inside the token
-    var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
-    return;
-  }
+    request(user, function(error, response, body){
+        switch(body){
+            case 'teacher':
+                var profile = {
+                    username: req.body.username,
+                    role: 'teacher'
+                };
+                var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, { expiresInMinutes: 60*5 });
+                res.json({ token: token });
+                break;
 
-  if (req.body.username === '1' && req.body.password === '1') {
-    var profile = {
-      username: 'Peter the Teacher',
-      role: "admin",
-      id: 123423
-    };
-    // We are sending the profile inside the token
-    var token = jwt.sign(profile, require("../security/secrets").secretTokenAdmin, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
-    return;
-  }
+            case 'student':
+                var profile = {
+                    username: req.body.username,
+                    role: 'student'
+                };
+                var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, { expiresInMinutes: 60*5 });
+                res.json({ token: token });
+                break;
 
-  else{
-    res.status(401).send('Wrong user or password');
-    return;
-  }
+            case 'fail':
+                res.status(401).send('User not found');
+                break;
+            case 'false':
+                res.status(401).send('wrong password');
+                break;
+        }
+    })
 });
-
-
-//Get Partials made as Views
-router.get('/partials/:partialName', function(req, res) {
-  var name = req.params.partialName;
-  res.render('partials/' + name);
-});
-
 module.exports = router;

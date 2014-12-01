@@ -21,6 +21,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="person in foundPersons">
+          <td>{{$index+1}}</td>
           <td>{{person.firstName}}</td>
           <td>{{person.lastName}}</td>
           <td>{{person.role}}</td>
