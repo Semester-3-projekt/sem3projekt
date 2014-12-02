@@ -21,13 +21,14 @@ router.post('/authenticate', function(req, res){
         method: 'get'
     };
     request(user, function(error, response, body){
+        console.log(body);
         switch(body){
             case 'teacher':
                 var profile = {
                     username: req.body.username,
-                    role: 'teacher'
+                    role: 'admin'
                 };
-                var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, { expiresInMinutes: 60*5 });
+                var token = jwt.sign(profile, require("../security/secrets").secretTokenAdmin, { expiresInMinutes: 60*5 });
                 res.json({ token: token });
                 break;
 
