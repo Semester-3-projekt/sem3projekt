@@ -41,7 +41,7 @@ var studentsSchema = new mongoose.Schema({
 });
 
 var pointSchema = new mongoose.Schema({
-  _id : student,
+  _id : String,
   value : Number,
   studentId : {type: String, ref: 'student'}
 });
