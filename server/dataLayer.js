@@ -14,7 +14,7 @@ function getStudents(callback) {
 function getClasses(callback)  {
     classesModel.find({}, function (err, data) {
         if (err)
-            result(err)
+            result(err);
         else {
             result(null, data)
         }
@@ -22,6 +22,6 @@ function getClasses(callback)  {
 
 };
 module.exports = {
-    getStudents :getStudents,
+    getStudents: getStudents,
     getClasses: getClasses
 };
