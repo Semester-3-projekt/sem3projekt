@@ -1,7 +1,6 @@
 var studentsModel = require('./model/db').studentsModel;
-var classesModel = require('./model/db').classesModel;
 
-function getStudents(callback) {
+var getStudents = function(result) {
 
     studentsModel.find({}, function (err, data) {
         if (err) result(err);
@@ -11,25 +10,4 @@ function getStudents(callback) {
 
     });
 };
-
-
-function getClasses(callback)  {
-    classesModel.find({}, function (err, data) {
-        if (err)
-            result(err)
-        else {
-            result(null, data)
-        }
-    });
-
-};
-
-
-
-
-
-
-module.exports = {
-    getStudents :getStudents,
-    getClasses: getClasses
-};
+exports.getStudents = getStudents;
