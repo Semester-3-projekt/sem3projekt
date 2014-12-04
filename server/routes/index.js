@@ -41,11 +41,11 @@ router.post('/authenticate', function(req, res){
                 res.json({ token: token });
                 break;
 
-            case 'fail':
+            case '"fail"':
                 res.status(401).send('User not found');
                 break;
-            case 'false':
-                res.status(401).send('wrong password');
+            case '"false"':
+                res.status(401).send('wrong Username or Password');
                 break;
         }
     })
