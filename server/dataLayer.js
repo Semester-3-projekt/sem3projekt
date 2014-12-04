@@ -1,8 +1,8 @@
-var personsModel = require('./model/db').personsModel;
+var studentsModel = require('./model/db').studentsModel;
 
 var getStudents = function(result) {
 
-    personsModel.find({}, function (err, data) {
+    studentsModel.find({}, function (err, data) {
         if (err) result(err);
         else {
             result(null, data);

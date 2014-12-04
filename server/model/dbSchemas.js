@@ -11,26 +11,128 @@ var myclass = new  model.classesModel({_id: 1, name:"datA"});
 myclass.save(function(err) {
     console.log(err);
 });
+var points = [
+    {
+        "_id": 1,
+        "value": 5,
+        "studentId": 1
+    },
+    {
+        "_id": 2,
+        "value": 3,
+        "studentId": 2
+    },
+    {
+        "_id": 3,
+        "value": 2,
+        "studentId": 3
+    },
+    {
+        "_id": 4,
+        "value": 1,
+        "studentId": 4
+    },
+    {
+        "_id": 5,
+        "value": 3,
+        "studentId": 5
+    },
+    {
+        "_id": 6,
+        "value": 2,
+        "studentId": 6
+    },
+    {
+        "_id": 7,
+        "value": 3,
+        "studentId": 7
+    },
+    {
+        "_id": 8,
+        "value": 2,
+        "studentId": 8
+    },
+    {
+        "_id": 9,
+        "value": 2,
+        "studentId": 9
+    },
+    {
+        "_id": 10,
+        "value": 1,
+        "studentId": 10
+    },
+    {
+        "_id": 11,
+        "value": 2,
+        "studentId": 11
+    },
+    {
+        "_id": 12,
+        "value": 3,
+        "studentId": 12
+    },
+    {
+        "_id": 13,
+        "value": 4,
+        "studentId": 13
+    },
+    {
+        "_id": 14,
+        "value": 1,
+        "studentId": 14
+    },
+    {
+        "_id": 15,
+        "value": 3,
+        "studentId": 15
+    },
+    {
+        "_id": 16,
+        "value": 2,
+        "studentId": 16
+    },
+    {
+        "_id": 17,
+        "value": 6,
+        "studentId": 17
+    },
+    {
+        "_id": 18,
+        "value": 3,
+        "studentId": 18
+    },
+    {
+        "_id": 19,
+        "value": 2,
+        "studentId": 19
+    },
+    {
+        "_id": 20,
+        "value": 1,
+        "studentId": 20
+    },
+]
 var periods = [
     {
         "_id": 1,
         "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
-        classId: {type: String, ref: 'classes'}
+        classId: 1
     },
     {
         "_id": 2,
         "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
-        classId: {type: String, ref: 'classes'}
+        classId: 1
     },
     {
         "_id": 3,
         "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
-        classId: {type: String, ref: 'classes'}
+        classId: 1
     },
     {
         "_id": 4,
         "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
-        classId: {type: String, ref: 'classes'}
+        classId: 1
     }
 ];
 
@@ -40,70 +142,70 @@ var tasks = [
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 1
     },
     {
         "_id": 2,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 2
     },
     {
         "_id": 3,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 3
     },
     {
         "_id": 4,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 4
     },
     {
         "_id": 5,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 1
     },
     {
         "_id": 6,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 2
     },
     {
         "_id": 7,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 3
     },
     {
         "_id": 8,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 4
     },
     {
         "_id": 9,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 1
     },
     {
         "_id": 10,
         "name": "do this",
         "maxPoints": 160,
         "description": "Do it this way",
-        "periodId": {type: String, ref: 'period'}
+        "periodId": 1
     }
 ]
     var students = [
@@ -263,4 +365,11 @@ tasks.forEach(function(task){
     task.periodId = 1;
     var newTask = new model.taskModel(task);
     newTask.save();
+});
+var qwert = 1;
+points.forEach(function(point){
+    point.studentId = qwert++;
+    var newPoint = new model.pointModel(point);
+    newPoint.save();
+
 });
