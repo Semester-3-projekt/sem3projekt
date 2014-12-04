@@ -39,4 +39,17 @@ router.get('/getStudents/:student', function(req, res) {
   });
 });
 
+router.get('/classes', function(res,req){
+  dbLayer.getClasses(function(err, data){
+   if(err){
+     res.status(err.status || 400);
+     res.send(JSON.stringify({error: err.toString()}));
+     return;
+   }
+    res.header("Content-type","application/json");
+    res.send(JSON.stringify(data));
+
+  });
+});
+
 module.exports = router;

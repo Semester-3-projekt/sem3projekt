@@ -1,4 +1,3 @@
 node_modules/
 public/vendor/
-jsLibraryMappings.xml
-workspace.xml
+/.idea/
