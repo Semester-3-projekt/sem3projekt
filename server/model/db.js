@@ -68,7 +68,7 @@ var classesSchema = new mongoose.Schema({
 });
 
 exports.studentsModel = mongoose.model('Student', studentsSchema, 'student');
-exports.pointModel = mongoose.model('point', pointSchema);
-exports.taskModel = mongoose.model('task',taskSchema);
-exports.periodModel = mongoose.model('period', periodSchema);
-exports.classesModel = mongoose.model('classes', classesSchema);
+exports.pointModel = mongoose.model('Point', pointSchema, 'point');
+exports.taskModel = mongoose.model('Task',taskSchema, 'task');
+exports.periodModel = mongoose.model('Period', periodSchema, 'period');
+exports.classesModel = mongoose.model('Classes', classesSchema, 'classes');
