@@ -72,5 +72,3 @@ exports.pointModel = mongoose.model('point', pointSchema);
 exports.taskModel = mongoose.model('task',taskSchema);
 exports.periodModel = mongoose.model('period', periodSchema);
 exports.classesModel = mongoose.model('classes', classesSchema);
-
-//test

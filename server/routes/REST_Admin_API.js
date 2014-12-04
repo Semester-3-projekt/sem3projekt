@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-var person = mongoose.model('Person');
+var person = mongoose.model('Student');
 var dbLayer = require('../dataLayer.js');
 
-router.get('/getPersons', function(req, res) {
+router.get('/students', function(req, res) {
   var persons = [{firstName: 'Peter'}, {firstName: 'Joe'}];
   dbLayer.getStudents(function (err, data) {
     if (err) {
