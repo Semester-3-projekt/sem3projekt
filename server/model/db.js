@@ -33,42 +33,42 @@ process.on('SIGINT', function() {
 });
 
 var studentsSchema = new mongoose.Schema({
-  _id : String,
+  _id : Number,
   firstName : String,
   lastName : String,
   userName : String,
-  classId : {type: String, ref: 'classes'}
+  classId : {type: Number, ref: 'classes'}
 });
 
 var pointSchema = new mongoose.Schema({
-  _id : String,
+  _id : Number,
   value : Number,
   studentId : {type: String, ref: 'student'}
 });
 
 var taskSchema = new mongoose.Schema({
-  _id : String,
+  _id : Number,
   name : String,
   maxPoints : Number,
   description : String,
-  periodId : {type: String, ref: 'period'}
+  periodId : {type: Number, ref: 'period'}
 });
 
 var periodSchema = new mongoose.Schema({
-  _id : String,
+  _id : Number,
   name : String,
   startDate : Date,
   endDate : Date,
-  classId : {type: String, ref: 'classes'}
+  classId : {type: Number, ref: 'classes'}
 });
 
 var classesSchema = new mongoose.Schema({
-  _id : String,
+  _id : Number,
   name : String
 });
 
 exports.studentsModel = mongoose.model('Student', studentsSchema, 'student');
-exports.pointModel = mongoose.model('point', pointSchema);
-exports.taskModel = mongoose.model('task',taskSchema);
-exports.periodModel = mongoose.model('period', periodSchema);
-exports.classesModel = mongoose.model('classes', classesSchema);
+exports.pointModel = mongoose.model('Point', pointSchema, 'point');
+exports.taskModel = mongoose.model('Task',taskSchema, 'task');
+exports.periodModel = mongoose.model('Period', periodSchema, 'period');
+exports.classesModel = mongoose.model('Classes', classesSchema, 'classes');
