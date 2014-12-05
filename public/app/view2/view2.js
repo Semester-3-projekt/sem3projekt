@@ -11,10 +11,12 @@ angular.module('myAppRename.view2', ['ngRoute'])
   .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
     $http({
       method: 'GET',
-      url: 'userApi/test'
+      //url: 'userApi/test'      // controller henter her 'userApi/test' i REST_user_api
+      url: 'adminApi/getStudents'
     })
       .success(function (data, status, headers, config) {
-        $scope.info = data;
+        //$scope.info = data;          //      her kommer data "info" ind fra  og Scopes til view2 html
+        $scope.foundPerson = data;
         $scope.error = null;
       }).
       error(function (data, status, headers, config) {
