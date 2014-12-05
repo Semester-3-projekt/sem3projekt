@@ -8,6 +8,7 @@ if( typeof global.TEST_DATABASE != "undefined" ) {
 }
 else{
   dbURI = 'mongodb://sem3projekt:sem3projekt@ds053160.mongolab.com:53160/sem3projekt';
+
 }
 
 mongoose.connect(dbURI);

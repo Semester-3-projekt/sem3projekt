@@ -10,22 +10,41 @@ angular.module('myAppRename.view3', ['ngRoute'])
 }])
 
 .controller('View3Ctrl', function ($scope, $http) {
-    $http({
-      method: 'GET',
-      url: 'adminApi/getStudents'
-    }).
-      success(function (data, status, headers, config) {
-        $scope.foundPersons = data;
-         $scope.error = null;
+   $http({
+        method: 'GET',
+        url: 'adminApi/getStudents'
       }).
-      error(function (data, status, headers, config) {
-        if(status == 401){
-          $scope.error ="You are not authenticated to request these data";
-            return;
-        }
-        $scope.error = data;
-      });
-});
+          success(function(data, status, header, config){
+            $scope.foundStudents = data;
+            $scope.error = null;
+          }).
+          error(function(data, status, headers,config) {
+            if(status == 401){
+            $scope.error = "You are not authenticated to request these data";
+              return;
+          }
+            $scope.error = data;
+
+          });
+
+      $http({
+        method: 'GET',
+        url: 'adminApi/classes'
+      }).
+          success(function (data, status, headers, config) {
+            $scope.foundClasses = data;
+            $scope.error = null;
+          }).
+          error(function (data, status, headers, config) {
+            if(status == 401){
+              $scope.error ="You are not authenticated to request these data";
+              return;
+            }
+            $scope.error = data;
+          });
+
+    });
+
 
 
 

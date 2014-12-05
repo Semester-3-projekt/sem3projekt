@@ -1,12 +1,12 @@
-var studentsModel = require('./model/db').studentsModel;
-var classesModel = require('./model/db').classesModel;
+var studentsModel = require('./db').studentsModel;
+var classesModel = require('./db').classesModel;
 
 function getStudents(callback) {
 
     studentsModel.find({}, function (err, data) {
-        if (err) result(err);
+        if (err) callback(err);
         else {
-            result(null, data);
+            callback(null, data);
         }
 
     });
@@ -14,13 +14,17 @@ function getStudents(callback) {
 function getClasses(callback)  {
     classesModel.find({}, function (err, data) {
         if (err)
-            result(err);
+            callback(err);
         else {
-            result(null, data)
+            callback(null, data)
         }
     });
 
 };
+
+function getPeriods(className,callback){
+
+}
 module.exports = {
     getStudents: getStudents,
     getClasses: getClasses
