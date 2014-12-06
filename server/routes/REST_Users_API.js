@@ -1,5 +1,5 @@
 var express = require('express');
-var dbLayer = require('../dataLayer');
+var dbLayer = require('../model/dataLayer');
 var router = express.Router();
 router.get('/test', function(req, res) {   //  test kaldes fra   view 2 "mgs"
     res.header("Content-type","application/json");

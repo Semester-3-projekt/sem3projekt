@@ -116,21 +116,25 @@ var points = [
 var periods = [
     {
         "_id": 1,
-        "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
+        "name": "p1 - Network & Socket programming",
+        "startDate": "2015-08-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
         classId: 1
     },
     {
         "_id": 2,
+        "name": "p2 - JPA",
         "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
         classId: 1
     },
     {
         "_id": 3,
+        "name": "p3 - Node.js & Javascript",
         "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
         classId: 1
     },
     {
         "_id": 4,
+        "name": "p4 - Angular",
         "startDate": "2015-09-28T17:37:23-07:00", endDate: "2015-09-28T17:37:23-07:00",
         classId: 1
     }

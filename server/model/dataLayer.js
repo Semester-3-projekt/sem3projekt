@@ -1,11 +1,13 @@
 var studentsModel = require('./model/db').studentsModel;
 var classesModel = require('./model/db').classesModel;
 var taskModel = require('./model/db').taskModel;
+var studentsModel = require('./db').studentsModel;
+var classesModel = require('./db').classesModel;
 
 function getStudents(callback) {
 
     studentsModel.find({}, function (err, data) {
-        if (err) result(err);
+        if (err) callback(err);
         else {
             callback (null, data);
         }
@@ -38,6 +40,10 @@ function getClasses(callback)  {
     });
 
 };
+
+function getPeriods(className,callback){
+
+}
 
 //********* Get list of Tasks*****//
 function getTasks(callback) {

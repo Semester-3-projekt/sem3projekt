@@ -1,12 +1,16 @@
 <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
-<div class="row">
-  <!--<ul class="nav nav-pills" ng-model="addStudent">-->
-    <!--<li><a href="#/view3">Add student</a></li>-->
-  <!--</ul>-->
 
-  <div class="col-md-8">
+<div class="row" ng-show="isAdmin">
+  <h2>Select a class</h2>
+  <button class="btn btn-primary" ng-repeat="class in foundClasses">{{class.name}}</button>
+  <!--<a href="#/view3" ng-repeat="class in foundClasses">{{}}</a>-->
+</div>
 
-    <table class="table table-striped" ng-show="isAdmin">
+
+<div class="row" ng-show="isAdmin">
+
+ <div class="col-md-8">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Index</th>
@@ -15,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="person in foundPersons">
+        <tr ng-repeat="person in foundStudents">
           <td>{{$index+1}}</td>
           <td>{{person.firstName}}</td>
           <td>{{person.lastName}}</td>
@@ -24,51 +28,51 @@
     </table>
   </div>
 
-  <div class="col-md-4">
-  <form class="form-horizontal" ng-show="isAdmin">
-    <fieldset >
-      <legend>New student</legend>
-      <div class="form-group">
-        <label for="UserName" class="control-label col-xs-3" ><span class="label label-info">User Name</span></label>
-        <div class="col-xs-9">
-          <input type="text" ng-model="newstudent.username" class="form-control" id="UserName" placeholder="UserName">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="firstName" class="control-label col-xs-3"><span class="label label-info">first Name</span></label>
-        <div class="col-xs-9">
-          <input type="text" ng-model="newstudent.firstName" class="form-control" id="firstName" placeholder="First Name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="LastName" class="control-label col-xs-3"><span class="label label-info">Last Name</span></label>
-        <div class="col-xs-9">
-          <input type="text" ng-model="newstudent.lastName" class="form-control" id="LastName" placeholder="Last Name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="role" class="control-label col-xs-3"><span class="label label-info">Role</span></label>
-        <div class="col-xs-9">
-          <input type="text" ng-model="newstudent.role" class="form-control" id="role" placeholder="Role">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email" class="control-label col-xs-3"><span class="label label-info">Email</span></label>
-        <div class="col-xs-9">
-          <input type="text" ng-model="newstudent.email" class="form-control" id="email" placeholder="Email">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="address" class="control-label col-xs-3"><span class="label label-info">Address</span></label>
-        <div class="col-xs-9">
-          <input type="text" ng-model="newstudent.address" class="form-control" id="address" placeholder="address">
-        </div>
-      </div>
-    </fieldset>
-   </form>
-    <div class="form-group" ng-show="isAdmin">
-      <button type="submit" ng-click="saveStudent()"  class="btn btn-primary">Save</button>
-    </div>
-  </div>
+  <!--<div class="col-md-4">-->
+  <!--<form class="form-horizontal">-->
+    <!--<fieldset >-->
+      <!--<legend>New student</legend>-->
+      <!--<div class="form-group">-->
+        <!--<label for="UserName" class="control-label col-xs-3" ><span class="label label-info">User Name</span></label>-->
+        <!--<div class="col-xs-9">-->
+          <!--<input type="text" ng-model="newstudent.username" class="form-control" id="UserName" placeholder="UserName">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="firstName" class="control-label col-xs-3"><span class="label label-info">first Name</span></label>-->
+        <!--<div class="col-xs-9">-->
+          <!--<input type="text" ng-model="newstudent.firstName" class="form-control" id="firstName" placeholder="First Name">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="LastName" class="control-label col-xs-3"><span class="label label-info">Last Name</span></label>-->
+        <!--<div class="col-xs-9">-->
+          <!--<input type="text" ng-model="newstudent.lastName" class="form-control" id="LastName" placeholder="Last Name">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="role" class="control-label col-xs-3"><span class="label label-info">Role</span></label>-->
+        <!--<div class="col-xs-9">-->
+          <!--<input type="text" ng-model="newstudent.role" class="form-control" id="role" placeholder="Role">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="email" class="control-label col-xs-3"><span class="label label-info">Email</span></label>-->
+        <!--<div class="col-xs-9">-->
+          <!--<input type="text" ng-model="newstudent.email" class="form-control" id="email" placeholder="Email">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="address" class="control-label col-xs-3"><span class="label label-info">Address</span></label>-->
+        <!--<div class="col-xs-9">-->
+          <!--<input type="text" ng-model="newstudent.address" class="form-control" id="address" placeholder="address">-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</fieldset>-->
+   <!--</form>-->
+    <!--<div class="form-group">-->
+      <!--<button type="submit" ng-click="saveStudent()"  class="btn btn-primary">Save</button>-->
+    <!--</div>-->
+  <!--</div>-->
 
 </div>
