@@ -23,7 +23,7 @@ router.post('/authenticate', function(req, res){
     request(user, function(error, response, body){
         console.log(body);
         switch(body){
-            case 'teacher':
+            case '"teacher"':
                 var profile = {
                     username: req.body.username,
                     role: 'admin'
@@ -32,7 +32,7 @@ router.post('/authenticate', function(req, res){
                 res.json({ token: token });
                 break;
 
-            case 'student':
+            case '"student"':
                 var profile = {
                     username: req.body.username,
                     role: 'student'

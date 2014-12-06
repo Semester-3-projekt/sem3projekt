@@ -4,7 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var student = mongoose.model('Student');
 var classes = mongoose.model('Classes');
-var dbLayer = require('../model/dataLayer');
+var dbLayer = require('../dataLayer');
 
 router.get('/getStudents', function(req, res) {
   //var persons = [{firstName: 'Peter'}, {firstName: 'Joe'}];

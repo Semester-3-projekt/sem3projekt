@@ -1,8 +1,9 @@
 var studentsModel = require('./model/db').studentsModel;
 var classesModel = require('./model/db').classesModel;
 var taskModel = require('./model/db').taskModel;
-var studentsModel = require('./db').studentsModel;
-var classesModel = require('./db').classesModel;
+/*var studentsModel = require('./db.js').studentsModel;
+var classesModel = require('./db.js').classesModel;
+var taskModel = require('./db.js').taskModel;*/
 
 function getStudents(callback) {
 
