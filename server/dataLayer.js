@@ -1,5 +1,6 @@
 var studentsModel = require('./model/db').studentsModel;
 var classesModel = require('./model/db').classesModel;
+var taskModel = require('./model/db').taskModel;
 
 function getStudents(callback) {
 
@@ -12,6 +13,7 @@ function getStudents(callback) {
     });
 };
 
+//******** get one specific Student *****//
 function getStudent(userName,callback) {
 
     studentsModel.find({userName:userName})
@@ -36,9 +38,28 @@ function getClasses(callback)  {
     });
 
 };
+
+//********* Get list of Tasks*****//
+function getTasks(callback) {
+    taskModel.find({}, function(err,data){
+        if(err)
+        callback(err);
+        else{
+            callback(null,data)
+        }
+    });
+};
+// hvor class , periode og Student er specifiseret !?
+
+
+
+
+
+
 module.exports = {
     getStudents: getStudents,
     getClasses: getClasses,
-    getStudent: getStudent      //exporterer
+    getStudent: getStudent,
+    getTasks: getTasks  //exporterer
 
 };

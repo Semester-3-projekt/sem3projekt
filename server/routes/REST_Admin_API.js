@@ -19,7 +19,7 @@ router.get('/getStudents', function(req, res) {
   });
 })
 
-/* GET A User From The DataBase */
+/* GET A User From The DataBase Virker denne ??? Bruges den ??? RJ
 router.get('/getStudents/:student', function(req, res) {
   if(typeof global.mongo_error !== "undefined"){
     res.status(500);
@@ -38,6 +38,8 @@ router.get('/getStudents/:student', function(req, res) {
     res.send(JSON.stringify(data));
   });
 });
+*/
+
 
 router.get('/classes', function(res,req){
   dbLayer.getClasses(function(err, data){
