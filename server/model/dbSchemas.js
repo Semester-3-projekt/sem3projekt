@@ -7,10 +7,16 @@ model.taskModel.remove({}).exec();
 model.periodModel.remove({}).exec();
 model.studentsModel.remove({}).exec();
 
-var myclass = new  model.classesModel({_id: 1, name:"datA"});
-myclass.save(function(err) {
-    console.log(err);
-});
+var myclasses = [
+    {
+        _id: 1,
+        name:"datA"
+    },
+    {
+        _id: 2,
+        name:"datB"
+    }
+];
 var points = [
     {
         "_id": 1,
@@ -111,8 +117,8 @@ var points = [
         "_id": 20,
         "value": 1,
         "studentId": 20
-    },
-]
+    }
+];
 var periods = [
     {
         "_id": 1,
@@ -211,7 +217,7 @@ var tasks = [
         "description": "Do it this way",
         "periodId": 1
     }
-]
+];
     var students = [
     {
         "_id": 1,
@@ -353,8 +359,13 @@ var tasks = [
         "userName": "eget",
         "classId": 1
     }
-    ];
+];
 
+myclasses.forEach(function(myclass) {
+    myclass.classId = 1;
+    var newMyclass = new model.classesModel(myclass);
+    newMyclass.save();
+});
 students.forEach(function(student) {
     student.classId = 1;
     var newStudent = new model.studentsModel(student);
