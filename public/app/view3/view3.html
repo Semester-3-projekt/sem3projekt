@@ -13,15 +13,17 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Index</th>
           <th><a href="" ng-click="predicate = 'First Name'; reverse=!reverse">First Name</a></th>
           <th><a href="" ng-click="predicate = 'Last Name'; reverse=!reverse">Last Name</a></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="person in foundStudents">
-          <td>{{$index+1}}</td>
           <td>{{person.firstName}}</td>
+          <td>{{person.lastName}}</td>
+          <td>{{person.lastName}}</td>
+          <td>{{person.lastName}}</td>
+          <td>{{person.lastName}}</td>
           <td>{{person.lastName}}</td>
         </tr>
       </tbody>

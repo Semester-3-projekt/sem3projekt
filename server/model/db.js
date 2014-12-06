@@ -44,7 +44,8 @@ var studentsSchema = new mongoose.Schema({
 var pointSchema = new mongoose.Schema({
   _id : Number,
   value : Number,
-  studentId : {type: String, ref: 'student'}
+  studentId : {type: Number, ref: 'student'},
+  taskId : {type: Number, ref: 'task'}
 });
 
 var taskSchema = new mongoose.Schema({
