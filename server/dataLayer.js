@@ -1,7 +1,7 @@
 var studentsModel = require('./model/db').studentsModel;
 var classesModel = require('./model/db').classesModel;
 var taskModel = require('./model/db').taskModel;
-var periodModel = require('./model/db').taskModel;
+var periodModel = require('./model/db').periodModel;
 
 
 function getStudents(callback) {
@@ -15,21 +15,7 @@ function getStudents(callback) {
     });
 };
 
-//******** get one specific Student *****//
-function getStudent(userName,callback) {
-
-    studentsModel.find({userName:userName})
-     .populate('classId')  // Problemer: dokument classes i mongodb  virker ikke når vi vil have dokument classes med!
-        .exec(function (err, data) {
-        if (err)
-            callback(err);
-        else {
-            callback (null, data);
-        }
-
-    });
-};
-
+/***********Get list of CLASSES********/
 function getClasses(callback)  {
     classesModel.find({}, function (err, data) {
         if (err)
@@ -52,24 +38,23 @@ function getPeriods(callback){
         }
     });
 };
-
 //********* Get specific PERIOD *****//
-function getPeriod(number,callback){
-    periodModel.find({number:number}, function(err,data){
+function getPeriod(periodNumber,callback){
+    periodModel.find({number:periodNumber})
+        //.populate('NOGET_Id')  // Hvad der kan populates!
+        .exec(function(err,data){
         if(err)
             callback(err);
         else{
-            callback(null,data)
+            callback(null,data);
         }
     });
 };
-
 //********* Get specific STUDENT *****//
 function getStudent(userName,callback) {
-
     studentsModel.find({userName:userName})
         //.populate('classId')  // dokument classes i mongodb  virker NU!
-        .exec(function (err, data) {
+        .exec(function(err, data){
             if (err)
                 callback(err);
             else {
@@ -79,7 +64,6 @@ function getStudent(userName,callback) {
         });
 
 };
-
 //********* Get list of TASKS*****//
 function getTasks(callback) {
     taskModel.find({}, function(err,data){
@@ -101,7 +85,8 @@ module.exports = {
     getClasses: getClasses,
     getStudent: getStudent,
     getTasks: getTasks,
-    getPeriods: getPeriods
+    getPeriods: getPeriods,
+    getPeriod: getPeriod
      //exporterer
 
 };

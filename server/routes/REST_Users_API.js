@@ -1,6 +1,13 @@
 var express = require('express');
-var dbLayer = require('../dataLayer');
 var router = express.Router();
+var mongoose = require('mongoose');
+var student = mongoose.model('Student');
+var classes = mongoose.model('Classes');
+var period = mongoose.model('Period');
+//**************************************************HUSK !!!! at require, når der referes til en model i db */
+
+var dbLayer = require('../dataLayer');
+
 router.get('/test', function(req, res) {   //  test kaldes fra   view 2 "mgs"
     res.header("Content-type","application/json");
     res.end('{"msg" : "Test Message, You are logged on as a User since you could fetch this data"}');   // msg sendes til

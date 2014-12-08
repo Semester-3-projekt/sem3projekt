@@ -3,6 +3,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var student = mongoose.model('Student');
 var classes = mongoose.model('Classes');
+var period = mongoose.model('Period');
+//**************************************************HUSK !!!! at require, når der referes til en model i db */
 var dbLayer = require('../dataLayer');
 
 router.get('/getStudents', function(req, res) {
@@ -24,7 +26,7 @@ router.get('/getStudents', function(req, res) {
 });
 
 
-
+/*********  disse skal vel være for at kalde fra html views ??? */
 router.get('/classes', function(req,res){
   if(typeof global.mongo_error !== "undefined"){
     res.status(500);
@@ -44,9 +46,8 @@ router.get('/classes', function(req,res){
   });
 });
 
-/************ get PERIODS *****/  /* Hvordan kun specifik students periods? */
-
-router.get('/getPeriods', function(err,data){
+/************ get PERIODS *****/              /* VIRKER HURRA!!!*/
+router.get('/getPeriods', function(req,res){
     if(typeof global.mongo_error !== "undefined"){
         res.status(500);
         res.end("Error: "+global.mongo_error+" To see a list of users here, make sure you have started the database and set up some test users (see model-->db.js for instructions)");
@@ -58,22 +59,22 @@ router.get('/getPeriods', function(err,data){
             res.send(JSON.stringify({error: err.toString()}));
             return;
         }
+        console.log(data);
         res.header("Content-type","application/json");
         res.send(JSON.stringify(data));
 
     });
 });
-
-
-/************ get one specifik PERIOD *****/  /* Hvordan kun specifik students periode? */
-router.get('/getperiod/:number', function(req, res) {
+/************ get one specifik PERIOD *****/       /* VIRKER IKKE*//* Hvordan kun specifik students periode? */
+router.get('/getPeriod/:periodNumber', function(req, res) {
+    //console.log(number)
     if(typeof global.mongo_error !== "undefined"){
         res.status(500);
-        res.end("Error: "+global.mongo_error+" To see a list of users here, make sure you have started the database and set up some test users (see model-->db.js for instructions)");
+        res.end("Error: "+global.mongo_error+" To see a specifik period here, (see model-->db.js for instructions)");
         return;
     }
-    var requestedStudent = req.params.student;
-    dbLayer.getPeriod(number,function (err, data) {
+    var requestedPeriodName = req.params.periodNumber;
+    dbLayer.getPeriod(requestedPeriodName,function (err, data) {
         if (err) {
             res.status(err.status || 400);
             res.send(JSON.stringify({error: err.toString()}));
@@ -85,37 +86,24 @@ router.get('/getperiod/:number', function(req, res) {
     });
 });
 
-
-
-
-
-
-/*   forsøg med Post new student'/
-router.post('/postStudent', function(req, res) {
+/* GET A User From The DataBase, da kun en user skal ses i view3 !*/
+router.get('/getStudent/:student', function(req, res) {
     if(typeof global.mongo_error !== "undefined"){
         res.status(500);
         res.end("Error: "+global.mongo_error+" To see a list of users here, make sure you have started the database and set up some test users (see model-->db.js for instructions)");
         return;
     }
-    dbLayer.getClasses(function(err, data){
-        if(err){
+    var requestedStudent = req.params.student;
+    dbLayer.getStudent(requestedStudent,function (err, data) {
+        if (err) {
             res.status(err.status || 400);
             res.send(JSON.stringify({error: err.toString()}));
             return;
         }
+        console.log(data);
         res.header("Content-type","application/json");
         res.send(JSON.stringify(data));
-
     });
 });
-
-// Add new member: POST /members/:id/:name/:address/:age        //Create an object:
-// var person = new personModel({name:’Joe’,age:24});
-//Save the object in the database:
-//person.save(function(err, person) {
-//    if(err) …
-
-//});
-/******** noter til post new student *****/
 
 module.exports = router;

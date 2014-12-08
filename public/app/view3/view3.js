@@ -52,6 +52,23 @@ angular.module('myAppRename.view3', ['ngRoute'])
           });
 
 
+      //****************Server initialiseres med et getkald på getPeriods   ****************//
+        $http({
+            method: 'GET',
+            url: 'adminApi/getPeriods'
+        }).
+            success(function (data, status, headers, config) {
+                $scope.foundClasses = data;
+                $scope.error = null;
+            }).
+            error(function (data, status, headers, config) {
+                if(status == 401){
+                    $scope.error ="You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
+
+            });
 
 
     });
