@@ -10,7 +10,10 @@ angular.module('myAppRename.view3', ['ngRoute'])
 }])
 
 .controller('View3Ctrl', function ($scope, $http) {
-   $http({
+
+
+
+        $http({
         method: 'GET',
         url: 'adminApi/getStudents'
       }).
@@ -27,6 +30,10 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
           });
 
+
+
+
+
       $http({
         method: 'GET',
         url: 'adminApi/classes'
@@ -41,7 +48,11 @@ angular.module('myAppRename.view3', ['ngRoute'])
               return;
             }
             $scope.error = data;
+
           });
+
+
+
 
     });
 
