@@ -75,6 +75,21 @@ function getTasks(callback) {
     });
 };     // hvor class , periode og Student er specifiseret !?
 
+function getTaskById(_id, callback){
+    taskModel.find({_id:_id})
+        //.populate('classId')  // dokument classes i mongodb  virker NU!
+        .exec(function(err, data){
+            if (err)
+                callback(err);
+            else {
+                callback (null, data);
+            }
+
+        });
+};
+
+
+
 
 //********* POST Specifik TASK*****//
 
@@ -85,6 +100,7 @@ module.exports = {
     getClasses: getClasses,
     getStudent: getStudent,
     getTasks: getTasks,
+    getTaskById: getTaskById,
     getPeriods: getPeriods,
     getPeriod: getPeriod
      //exporterer

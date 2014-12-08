@@ -35,9 +35,7 @@
         <tr ng-repeat="person in foundStudents">
 
           <td>{{person.firstName}} {{person.lastName}}</td>
-          <td ng-repeat="task in tasks(person.userName)"></td>
-          <td>{{person.firstName}} {{person.lastName}}</td>
-          <td ng-repeat="task in tasks(person.userName)"></td>
+          <td ng-repeat="task in foundTasks">{{task.name}}</td>
 
         </tr>
       </tbody>

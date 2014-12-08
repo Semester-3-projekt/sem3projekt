@@ -31,9 +31,6 @@ angular.module('myAppRename.view3', ['ngRoute'])
           });
 
 
-
-
-
       $http({
         method: 'GET',
         url: 'adminApi/classes'
@@ -52,13 +49,51 @@ angular.module('myAppRename.view3', ['ngRoute'])
           });
 
 
-      //****************Server initialiseres med et getkald på getPeriods   ****************//
+      //****************Server getPeriod  ****************//
+
+        $http({
+            method: 'GET',
+            url: 'adminApi/getPeriod'
+        }).
+            success(function (data, status, headers, config) {
+                $scope.foundPeriod = data;
+                $scope.error = null;
+            }).
+            error(function (data, status, headers, config) {
+                if(status == 401){
+                    $scope.error ="You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
+
+            });
+
+
+        //****************Server getPeriodSSSS  ****************//
+
         $http({
             method: 'GET',
             url: 'adminApi/getPeriods'
         }).
             success(function (data, status, headers, config) {
-                $scope.foundClasses = data;
+                $scope.foundPeriods = data;
+                $scope.error = null;
+            }).
+            error(function (data, status, headers, config) {
+                if(status == 401){
+                    $scope.error ="You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
+
+            });
+
+        $http({
+            method: 'GET',
+            url: 'adminApi/getTasks'
+        }).
+            success(function (data, status, headers, config) {
+                $scope.foundTasks = data;
                 $scope.error = null;
             }).
             error(function (data, status, headers, config) {
