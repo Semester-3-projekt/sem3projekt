@@ -58,6 +58,7 @@ var taskSchema = new mongoose.Schema({
 
 var periodSchema = new mongoose.Schema({
   _id : Number,
+  number : Number,
   name : String,
   startDate : Date,
   endDate : Date,
