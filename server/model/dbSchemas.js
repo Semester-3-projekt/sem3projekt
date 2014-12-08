@@ -156,72 +156,72 @@ function insert() {
     var tasks = [
         {
             "_id": 1,
-            "name": "do this",
+            "name": "do this1",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 1",
             "periodId": 1
         },
         {
             "_id": 2,
-            "name": "do this",
+            "name": "do this2",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 2",
             "periodId": 2
         },
         {
             "_id": 3,
-            "name": "do this",
+            "name": "do this3",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 3",
             "periodId": 3
         },
         {
             "_id": 4,
-            "name": "do this",
+            "name": "do this4",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 4",
             "periodId": 4
         },
         {
             "_id": 5,
-            "name": "do this",
+            "name": "do this5",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 5",
             "periodId": 1
         },
         {
             "_id": 6,
-            "name": "do this",
+            "name": "do this6",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 6",
             "periodId": 2
         },
         {
             "_id": 7,
-            "name": "do this",
+            "name": "do this7",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 7",
             "periodId": 3
         },
         {
             "_id": 8,
-            "name": "do this",
+            "name": "do this8",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 8",
             "periodId": 4
         },
         {
             "_id": 9,
-            "name": "do this",
+            "name": "do this9",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 9",
             "periodId": 1
         },
         {
             "_id": 10,
-            "name": "do this",
+            "name": "do this10",
             "maxPoints": 160,
-            "description": "Do it this way",
+            "description": "Do it this 10",
             "periodId": 1
         }
     ];

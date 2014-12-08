@@ -88,12 +88,13 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
             });
 
+        /* ved ikke om dette er de rigtige Http handelers til at hente taks i momgoLab , men her er de Ihvertfald ! */
         $http({
             method: 'GET',
             url: 'adminApi/getTasks'
         }).
             success(function (data, status, headers, config) {
-                $scope.foundTasks = data;
+                $scope.foundTasks = data;                 /* OBS Navn på $Scope foundTasks !! */
                 $scope.error = null;
             }).
             error(function (data, status, headers, config) {
@@ -105,7 +106,22 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
             });
 
+        $http({
+            method: 'GET',
+            url: 'adminApi/getTaskById'
+        }).
+            success(function (data, status, headers, config) {
+                $scope.foundTaskById = data;               /* OBS Navn på $Scope foundTaskById !! */
+                $scope.error = null;
+            }).
+            error(function (data, status, headers, config) {
+                if(status == 401){
+                    $scope.error ="You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
 
+            });
     });
 
 /// ny controller til Post new student !!??

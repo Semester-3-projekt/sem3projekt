@@ -86,7 +86,7 @@ router.get('/getPeriod/:periodNumber', function(req, res) {
         res.send(JSON.stringify(data));
     });
 });
-/* GET A User From The DataBase, da kun en user skal ses i view3 ((er også i view2)) !*/
+/* GET A User From The DataBase, fordi at kun en user skal ses i view3 ((er også i view2)) !*/
 router.get('/getStudent/:student', function(req, res) {
     if(typeof global.mongo_error !== "undefined"){
         res.status(500);

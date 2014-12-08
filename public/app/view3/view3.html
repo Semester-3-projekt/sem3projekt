@@ -15,7 +15,6 @@
         <tr>
 
           <th><a href="" ng-click="predicate = 'First Name'; reverse=!reverse">Name</a></th>
-          <th><a href="" ng-click="predicate = 'Last Name'; reverse=!reverse">task 1</a></th>
           <th>task 1</th>
           <th>task 2</th>
           <th>task 3</th>
@@ -35,8 +34,8 @@
         <tr ng-repeat="person in foundStudents">
 
           <td>{{person.firstName}} {{person.lastName}}</td>
-          <td ng-repeat="task in foundTasks">{{task.name}}</td>
-
+          <td ng-repeat="task in foundTasks">{{task.name}}</td>   <!--måske det ikke her er taskx10 der skal hentes ind på hver række-->
+                                                                  <!--Det er jo points der skal tildeles hver Task så ?! -->
         </tr>
       </tbody>
     </table>
