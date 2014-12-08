@@ -117,8 +117,8 @@ var points = [
         "_id": 20,
         "value": 1,
         "studentId": 20
-    }
-];
+    },
+]
 var periods = [
     {
         "_id": 1,
@@ -217,7 +217,7 @@ var tasks = [
         "description": "Do it this way",
         "periodId": 1
     }
-];
+]
     var students = [
     {
         "_id": 1,
@@ -359,7 +359,7 @@ var tasks = [
         "userName": "eget",
         "classId": 1
     }
-];
+    ];
 
 myclasses.forEach(function(myclass) {
     myclass.classId = 1;

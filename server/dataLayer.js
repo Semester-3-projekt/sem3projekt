@@ -2,6 +2,7 @@ var studentsModel = require('./model/db').studentsModel;
 var classesModel = require('./model/db').classesModel;
 var taskModel = require('./model/db').taskModel;
 
+
 function getStudents(callback) {
 
     studentsModel.find({}, function (err, data) {
@@ -17,7 +18,7 @@ function getStudents(callback) {
 function getStudent(userName,callback) {
 
     studentsModel.find({userName:userName})
-        // .populate('classId')  // Problemer: dokument classes i mongodb  virker ikke når vi vil have dokument classes med!
+    // .populate('classId')  // Problemer: dokument classes i mongodb  virker ikke når vi vil have dokument classes med!
         .exec(function (err, data) {
         if (err)
             callback(err);
@@ -27,6 +28,18 @@ function getStudent(userName,callback) {
 
     });
 };
+
+//******** get one specific Student *****//
+// Add new member: POST /members/:id/:name/:address/:age        //Create an object:
+// var person = new personModel({name:’Joe’,age:24});
+//Save the object in the database:
+//person.save(function(err, person) {
+//    if(err) …
+
+//});
+//******** ØØØØØØØØØØØØØ *****//
+
+
 
 function getClasses(callback)  {
     classesModel.find({}, function (err, data) {

@@ -45,6 +45,6 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
     });
 
-
+/// ny controller til Post new student !!??
 
 
