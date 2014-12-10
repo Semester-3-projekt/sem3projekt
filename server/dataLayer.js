@@ -2,6 +2,8 @@ var studentsModel = require('./model/db').studentsModel;
 var classesModel = require('./model/db').classesModel;
 var taskModel = require('./model/db').taskModel;
 var periodModel = require('./model/db').periodModel;
+var pointModel = require('./model/db').pointModel;
+
 
 
 function getStudents(callback) {
@@ -88,8 +90,8 @@ function getTasks(callback) {
     });
 };     // hvor class , periode og Student er specifiseret !?
 
-function getTaskById(_id, callback){
-    taskModel.find({_id:_id})
+function getTaskById(_Id,callback){
+    taskModel.find({_Id:_Id})
         //.populate('classId')  // dokument classes i mongodb  virker NU!
         .exec(function(err, data){
             if (err)
@@ -115,7 +117,18 @@ function createStudent(student, callback){
         }
     });
 };
+//********* Get specific StudyPointById to reference student with a task giving a value! *****//
+function getStudyPointById(_id,callback){
+        pointModel.find({_id:_id})
 
+            .exec(function(err, data){
+            if(err)
+                callback(err);
+            else{
+                callback(null,data)
+            }
+        });
+};
 
 
 
@@ -131,6 +144,8 @@ module.exports = {
     getPeriod: getPeriod,
     createStudent: createStudent,
     getTaskInPeriods: getTaskInPeriods
+    getPeriod: getPeriod,
+    getStudyPointById: getStudyPointById
      //exporterer
 
 };

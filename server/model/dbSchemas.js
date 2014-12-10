@@ -367,14 +367,6 @@ function insert() {
             "classId": 1
         }
     ];
-    var classesx = 0;
-    myclasses.forEach(function (myclass) {
-        myclass.classId = 1;
-        var newMyclass = new model.classesModel(myclass);
-        newMyclass.save();
-        classesx++;
-    });
-    console.log(classesx + " classes saved");
 
     var studentsx = 0;
     students.forEach(function (student) {
