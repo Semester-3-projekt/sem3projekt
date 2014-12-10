@@ -8,16 +8,34 @@ angular.module('myAppRename.view2', ['ngRoute'])
       controller: 'View2Ctrl'
     });
   }])
+    .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
+      var studentId = $scope.username;
+
+//-------------Get the student----------------------
+      $http({
+        method: 'GET',
+        url: 'userApi/getStudent/'+studentId
+      })
+          .success(function(data){
+            $scope.foundStudents = data;
+            $scope.error = null;
+          }).
+          error(function(data, status) {
+            if(status == 401){
+              $scope.error = "You are not authenticated to request these data";
+              return;
+            }
+            $scope.error = data;
+
+          });
+ //-----------Get the tasks----------------------------
 
 
-  .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
-    $http({
-      method: 'GET',
-      //url: 'userApi/test'      // controller henter her 'userApi/test' i REST_user_api
-      url: 'userApi/getTasks'
+      $http({
+        method: 'GET',
+        url: 'userApi/getTasks/'+studentId
     })
       .success(function (data, status, headers, config) {
-        //$scope.info = data;          //      her kommer data "info" ind fra  og Scopes til view2 html
         $scope.foundTasks = data;
         $scope.error = null;
       }).
@@ -29,30 +47,20 @@ angular.module('myAppRename.view2', ['ngRoute'])
         $scope.error = data;
       });
 
-
-
-      $http({
+    $http({
         method: 'GET',
-        url: 'userApi/getStudent'
-      }).
-          success(function(data, status, header, config){
-            $scope.foundStudents = data;
+        url: 'userApi/getClass/'+studentId
+    })
+        .success(function (data, status, headers, config) {
+            $scope.foundClass = data;
             $scope.error = null;
-          }).
-          error(function(data, status, headers,config) {
-            if(status == 401){
-              $scope.error = "You are not authenticated to request these data";
-              return;
+        }).
+        error(function (data, status, headers, config) {
+            if (status == 401) {
+                $scope.error = "You are not authenticated to request these data";
+                return;
             }
             $scope.error = data;
-
-          });
-
-
-
-
-
-
-
+        });
 
   }]);

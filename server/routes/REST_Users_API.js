@@ -5,7 +5,6 @@ var student = mongoose.model('Student');
 var classes = mongoose.model('Classes');
 var period = mongoose.model('Period');
 //**************************************************HUSK !!!! at require, når der referes til en model i db */
-
 var dbLayer = require('../dataLayer');
 
 router.get('/test', function(req, res) {   //  test kaldes fra   view 2 "mgs"
@@ -45,7 +44,22 @@ router.get('/getTasks', function(req, res) {
         res.header("Content-type","application/json");
         res.send(JSON.stringify(data));
     });
-})
+});
+
+
+// ********** class *** ****** ///
+router.get('/getClass', function(req, res) {
+    dbLayer.getClasses(function (err, data) {
+        if (err) {
+            res.status(err.status || 400);
+            res.send(JSON.stringify({error: err.toString()}));
+            return;
+        }
+        console.log(data);
+        res.header("Content-type","application/json");
+        res.send(JSON.stringify(data));
+    });
+});
 
 
 

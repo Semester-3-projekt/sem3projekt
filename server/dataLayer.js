@@ -5,13 +5,11 @@ var periodModel = require('./model/db').periodModel;
 
 
 function getStudents(callback) {
-
     studentsModel.find({}, function (err, data) {
         if (err) callback(err);
         else {
             callback (null, data);
         }
-
     });
 };
 
@@ -55,8 +53,7 @@ function getStudent(userName,callback) {
     studentsModel.find({userName:userName})
         //.populate('classId')  // dokument classes i mongodb  virker NU!
         .exec(function(err, data){
-            if (err)
-                callback(err);
+            if (err) callback(err);
             else {
                 callback (null, data);
             }
