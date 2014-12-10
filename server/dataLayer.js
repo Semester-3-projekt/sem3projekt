@@ -2,6 +2,8 @@ var studentsModel = require('./model/db').studentsModel;
 var classesModel = require('./model/db').classesModel;
 var taskModel = require('./model/db').taskModel;
 var periodModel = require('./model/db').periodModel;
+var pointModel = require('./model/db').pointModel;
+
 
 
 function getStudents(callback) {
@@ -48,6 +50,19 @@ function getPeriod(periodNumber,callback){
         }
     });
 };
+//********* Get tasks in periods *******//
+function getTaskInPeriods(period, callback){
+    taskModel.find({periodId:period})
+        .populate('period.name')
+        .exec(function (err, data) {
+            if(err)
+                callback(err);
+            else{
+                callback(null,data);
+            }
+        });
+};
+
 //********* Get specific STUDENT *****//
 function getStudent(userName,callback) {
     studentsModel.find({userName:userName})
@@ -85,10 +100,32 @@ function getTaskById(_id, callback){
         });
 };
 
-
-
-
 //********* POST Specifik TASK*****//
+
+
+//********** Create student*******//
+function createStudent(student, callback){
+  var json = new model.studentsModel(student);
+    json.save(function(err, data){
+        if (err)
+            callback(err);
+        else{
+            callback(null, data);
+        }
+    });
+};
+//********* Get specific StudyPointById to reference student with a task giving a value! *****//
+function getStudyPointById(_id,callback){
+        pointModel.find({_id:_id})
+
+            .exec(function(err, data){
+            if(err)
+                callback(err);
+            else{
+                callback(null,data)
+            }
+        });
+};
 
 
 
@@ -99,7 +136,13 @@ module.exports = {
     getTasks: getTasks,
     getTaskById: getTaskById,
     getPeriods: getPeriods,
-    getPeriod: getPeriod
+    getPeriod: getPeriod,
+    getStudyPointById: getStudyPointById
+    getPeriod: getPeriod,
+    createStudent: createStudent,
+    getTaskInPeriods: getTaskInPeriods
+    getPeriod: getPeriod,
+    getStudyPointById: getStudyPointById
      //exporterer
 
 };
