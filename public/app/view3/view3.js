@@ -30,6 +30,27 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
           });
 
+/************Get specifik Student*************/
+        $http({
+            method: 'GET',
+            url: 'adminApi/getStudent/+username'
+        }).
+            success(function(data, status, header, config){
+                $scope.foundStudents = data;
+                $scope.error = null;
+            }).
+            error(function(data, status, headers,config) {
+                if(status == 401){
+                    $scope.error = "You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
+
+            });
+
+
+
+
 
       $http({
         method: 'GET',
@@ -122,6 +143,31 @@ angular.module('myAppRename.view3', ['ngRoute'])
                 $scope.error = data;
 
             });
+
+
+        $http({
+            method: 'GET',
+            url: 'adminApi/getStudyPointById'
+        }).
+            success(function (data, status, headers, config) {
+                $scope.foundpointById = data;               /* OBS Navn på $Scope foundTaskById !! */
+                $scope.error = null;
+            }).
+            error(function (data, status, headers, config) {
+                if(status == 401){
+                    $scope.error ="You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
+
+            });
+
+
+
+
+
+
+
     });
 
 /// ny controller til Post new student !!??

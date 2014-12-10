@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var student = mongoose.model('Student');
 var classes = mongoose.model('Classes');
 var period = mongoose.model('Period');
+var point = mongoose.model('Point');
 //**************************************************HUSK !!!! at require, når der referes til en model i db */
 
 var dbLayer = require('../dataLayer');

@@ -17,9 +17,10 @@ router.post('/authenticate', function(req, res){
     console.log("password: " + password);
 
     var user = {
-        uri: 'http://localhost:8080/connect/'+username+'+'+password,
+       // uri: 'http://localhost:8080/connect/'+username+'+'+password,
+       uri: 'http://137.135.176.226/connect/'+username+'+'+password,
         method: 'get'
-    };
+};
     request(user, function(error, response, body){
         console.log(body);
         switch(body){
@@ -50,4 +51,5 @@ router.post('/authenticate', function(req, res){
         }
     })
 });
+
 module.exports = router;

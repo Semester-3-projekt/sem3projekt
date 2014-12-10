@@ -5,6 +5,7 @@ var student = mongoose.model('Student');
 var classes = mongoose.model('Classes');
 var period = mongoose.model('Period');
 var tasks = mongoose.model('Task');
+var point = mongoose.model('Point');
 //**************************************************HUSK !!!! at require, når der referes til en model i db */
 var dbLayer = require('../dataLayer');
 
@@ -105,6 +106,7 @@ router.get('/getStudent/:student', function(req, res) {
         res.send(JSON.stringify(data));
     });
 });
+
 /* GET TASKS From The DataBase !*/
 router.get('/getTasks', function(req,res){
     if(typeof global.mongo_error !== "undefined"){
@@ -127,26 +129,51 @@ router.get('/getTasks', function(req,res){
 
 /* GET A specifik TASK From The DataBase !*/
 router.get('/getTaskById/:_id', function(req, res) {
-    if(typeof global.mongo_error !== "undefined"){
+    if (typeof global.mongo_error !== "undefined") {
         res.status(500);
-        res.end("Error: "+global.mongo_error+" To see a list of users here, make sure you have started the database and set up some test users (see model-->db.js for instructions)");
+        res.end("Error: " + global.mongo_error + " To see a list of users here, make sure you have started the database and set up some test users (see model-->db.js for instructions)");
         return;
     }
     var requestedId = req.params._id;
-    dbLayer.getTaskById(requestedId,function (err, data) {
+    dbLayer.getTaskById(requestedId, function (err, data) {
         if (err) {
             res.status(err.status || 400);
             res.send(JSON.stringify({error: err.toString()}));
             return;
         }
         console.log(data);
-        res.header("Content-type","application/json");
+        res.header("Content-type", "application/json");
         res.send(JSON.stringify(data));
     });
 });
 
+/* GET A specifik StudyPoint in The DataBase !*/
+router.get('/getStudyPointById/:_id', function(req, res){
+    if(typeof global.mongo_error !== "undefined"){
+        res.status(500);
+        res.end("Error: "+global.mongo_error+" U have to be logget ind! But fungtion: getStudyPointById/STudiId didnt succed!(see model-->db.js for instructions)");
+        return;
+    }
+    var requestedStudyId = req.params._id;
+    dbLayer.getStudyPointById(requestedStudyId, function(err,data){
+        if(err){
+            res.status(err.status || 400);
+            res.send(JSON.stringify({error: err.toString()}));
+        return;
+        }
+    console.log(data);
+    res.header("Content-type", "application/json");
+    res.send(JSON.stringify(data));
+
+    });
+
+})
+/*Slut*/
 
 
+/* PUT (create,Update) A specifik StudyPoint in The DataBase !*/
+
+/* relate these with a specifik Student & a specifik Task!*/
 
 
 module.exports = router;
