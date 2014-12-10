@@ -50,6 +50,19 @@ function getPeriod(periodNumber,callback){
         }
     });
 };
+//********* Get tasks in periods *******//
+function getTaskInPeriods(period, callback){
+    taskModel.find({periodId:period})
+        .populate('period.name')
+        .exec(function (err, data) {
+            if(err)
+                callback(err);
+            else{
+                callback(null,data);
+            }
+        });
+};
+
 //********* Get specific STUDENT *****//
 function getStudent(userName,callback) {
     studentsModel.find({userName:userName})
@@ -88,10 +101,23 @@ function getTaskById(_id, callback){
         });
 };
 
-
-
-
 //********* POST Specifik TASK*****//
+
+
+//********** Create student*******//
+function createStudent(student, callback){
+  var json = new model.studentsModel(student);
+    json.save(function(err, data){
+        if (err)
+            callback(err);
+        else{
+            callback(null, data);
+        }
+    });
+};
+
+
+
 
 
 
@@ -102,7 +128,9 @@ module.exports = {
     getTasks: getTasks,
     getTaskById: getTaskById,
     getPeriods: getPeriods,
-    getPeriod: getPeriod
+    getPeriod: getPeriod,
+    createStudent: createStudent,
+    getTaskInPeriods: getTaskInPeriods
      //exporterer
 
 };

@@ -1,91 +1,117 @@
 <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
 
-<div class="row" ng-show="isAdmin">
-  <h2>Select a class</h2>
-  <button class="btn btn-primary" ng-repeat="class in foundClasses">{{class.name}}</button>
-  <a href="#/view3" ng-repeat="class in foundClasses">{{}}</a>
+<!--<div class="classes" ng-show="isAdmin">-->
+<!--<div class="row">-->
+<!--<h2>Select a class</h2>-->
+<!--<a href="#/view3/view3.html">-->
+<!--<button class="btn btn-primary classbtn" ng-repeat="class in foundClasses" ng-click="showPeriods = !showPeriods">{{class.name}}</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="period_student" ng-show="isAdmin">
+    <div class="row">
+        <button ng-click="toggle()">Period 1</button>
+        <button ng-click="toggle()">Period 2</button>
+        <button ng-click="toggle()">Period 3</button>
+        <button ng-click="toggle()">Period 1</button>
+    </div>
+
+    <table class="table table-striped" ng-show="taskperiods">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in periods">
+                <td>{{task.name}}</td>
+            </tr>
+        </tbody>
+
+    </table>
 </div>
 
+<div class="row" ng-show="isAdmin">
 
- <div class="row" ng-show="isAdmin">
-
- <div class="col-md-8">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-
-          <th><a href="" ng-click="predicate = 'First Name'; reverse=!reverse">Name</a></th>
-          <th>task 1</th>
-          <th>task 2</th>
-          <th>task 3</th>
-          <th>task 4</th>
-          <th>task 5</th>
-          <th>task 6</th>
-          <th>task 7</th>
-          <th>ca1</th>
-          <th>ca2</th>
-          <th>Project</th>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><a href="" ng-click="predicate = 'First Name'; reverse=!reverse">Name</a></th>
+                <th>task 1</th>
+                <th>task 2</th>
+                <th>task 3</th>
+                <th>task 4</th>
+                <th>task 5</th>
+                <th>task 6</th>
+                <th>task 7</th>
+                <th>ca1</th>
+                <th>ca2</th>
+                <th>Project</th>
 
 
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="person in foundStudents">
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="person in foundStudents">
+                <td>{{person.firstName}} {{person.lastName}}</td>
+                <td ng-repeat="task in foundTasks">{{task.name}}
+                    <input type="number" id="markStudent" max="1" min="0">
+                </td>
+                <!--måske det ikke her er taskx10 der skal hentes ind på hver række-->
+                <!--Det er jo points der skal tildeles hver Task så ?! -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-          <td>{{person.firstName}} {{person.lastName}}</td>
-          <td ng-repeat="task in foundTasks">{{task.name}}</td>   <!--måske det ikke her er taskx10 der skal hentes ind på hver række-->
-                                                                  <!--Det er jo points der skal tildeles hver Task så ?! -->
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!--<div class="col-md-4">-->
-  <!--<form class="form-horizontal">-->
+    <!--<div class="col-md-4">-->
+    <!--<form class="form-horizontal">-->
     <!--<fieldset >-->
-      <!--<legend>New student</legend>-->
-      <!--<div class="form-group">-->
-        <!--<label for="UserName" class="control-label col-xs-3" ><span class="label label-info">User Name</span></label>-->
-        <!--<div class="col-xs-9">-->
-          <!--<input type="text" ng-model="newstudent.username" class="form-control" id="UserName" placeholder="UserName">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="firstName" class="control-label col-xs-3"><span class="label label-info">first Name</span></label>-->
-        <!--<div class="col-xs-9">-->
-          <!--<input type="text" ng-model="newstudent.firstName" class="form-control" id="firstName" placeholder="First Name">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="LastName" class="control-label col-xs-3"><span class="label label-info">Last Name</span></label>-->
-        <!--<div class="col-xs-9">-->
-          <!--<input type="text" ng-model="newstudent.lastName" class="form-control" id="LastName" placeholder="Last Name">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="role" class="control-label col-xs-3"><span class="label label-info">Role</span></label>-->
-        <!--<div class="col-xs-9">-->
-          <!--<input type="text" ng-model="newstudent.role" class="form-control" id="role" placeholder="Role">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="email" class="control-label col-xs-3"><span class="label label-info">Email</span></label>-->
-        <!--<div class="col-xs-9">-->
-          <!--<input type="text" ng-model="newstudent.email" class="form-control" id="email" placeholder="Email">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="address" class="control-label col-xs-3"><span class="label label-info">Address</span></label>-->
-        <!--<div class="col-xs-9">-->
-          <!--<input type="text" ng-model="newstudent.address" class="form-control" id="address" placeholder="address">-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</fieldset>-->
-   <!--</form>-->
+    <!--<legend>New student</legend>-->
     <!--<div class="form-group">-->
-      <!--<button type="submit" ng-click="saveStudent()"  class="btn btn-primary">Save</button>-->
+    <!--<label for="UserName" class="control-label col-xs-3" ><span class="label label-info">User Name</span></label>-->
+    <!--<div class="col-xs-9">-->
+    <!--<input type="text" ng-model="newstudent.username" class="form-control" id="UserName" placeholder="UserName">-->
     <!--</div>-->
-  <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="firstName" class="control-label col-xs-3"><span class="label label-info">first Name</span></label>-->
+    <!--<div class="col-xs-9">-->
+    <!--<input type="text" ng-model="newstudent.firstName" class="form-control" id="firstName" placeholder="First Name">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="LastName" class="control-label col-xs-3"><span class="label label-info">Last Name</span></label>-->
+    <!--<div class="col-xs-9">-->
+    <!--<input type="text" ng-model="newstudent.lastName" class="form-control" id="LastName" placeholder="Last Name">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="role" class="control-label col-xs-3"><span class="label label-info">Role</span></label>-->
+    <!--<div class="col-xs-9">-->
+    <!--<input type="text" ng-model="newstudent.role" class="form-control" id="role" placeholder="Role">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="email" class="control-label col-xs-3"><span class="label label-info">Email</span></label>-->
+    <!--<div class="col-xs-9">-->
+    <!--<input type="text" ng-model="newstudent.email" class="form-control" id="email" placeholder="Email">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="address" class="control-label col-xs-3"><span class="label label-info">Address</span></label>-->
+    <!--<div class="col-xs-9">-->
+    <!--<input type="text" ng-model="newstudent.address" class="form-control" id="address" placeholder="address">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</fieldset>-->
+    <!--</form>-->
+    <!--<div class="form-group">-->
+    <!--<button type="submit" ng-click="saveStudent()"  class="btn btn-primary">Save</button>-->
+    <!--</div>-->
+    <!--</div>-->
 
 </div>
