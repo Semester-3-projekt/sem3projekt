@@ -8,29 +8,20 @@
 <!--</a>-->
 <!--</div>-->
 <!--</div>-->
-
 <div class="period_student" ng-show="isAdmin">
-    <div class="row">
+   <!-- <div class="row">
         <button ng-click="toggle()">Period 1</button>
         <button ng-click="toggle()">Period 2</button>
         <button ng-click="toggle()">Period 3</button>
         <button ng-click="toggle()">Period 1</button>
+    </div> -->
+
+    <div ng-repeat="class in foundClasses">
+        <button ng-click="getStudentsByClass(class._id)">Class {{class.name}}</button>
+
     </div>
 
-    <table class="table table-striped" ng-show="taskperiods">
-        <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="task in periods">
-                <td>{{task.name}}</td>
-            </tr>
-        </tbody>
-
-    </table>
-</div>
+<!-- tjeck før tabel {{foundStudents}}   -->
 
 <div class="row" ng-show="isAdmin">
 
@@ -38,27 +29,27 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><a href="" ng-click="predicate = 'First Name'; reverse=!reverse">Name</a></th>
-                <th>task 1</th>
-                <th>task 2</th>
-                <th>task 3</th>
-                <th>task 4</th>
-                <th>task 5</th>
-                <th>task 6</th>
-                <th>task 7</th>
-                <th>ca1</th>
-                <th>ca2</th>
-                <th>Project</th>
-
-
+                <th>Name</th>
+                <th ng-repeat="task in foundTasks">{{task.name}}</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr ng-repeat="person in foundStudents">
+        <tr ng-repeat="student in foundStudents">
 
-          <td>{{person.firstName}} {{person.lastName}}</td>
-          <td ng-repeat="task in foundTasks">{{task.name}}</td>   <!--måske det ikke her er taskx10 der skal hentes ind på hver række-->
+          <td>{{student.firstName}} {{student.lastName}}</td>
+          <!--<td ng-repeat="task in foundTasks">{{task.name}}</td> -->
+            <!--<td ng-repeat="points in foundPointsByStudent | filter:student._id">
+                {{points.value}}
+            </td>-->
+            <!--<div ng-repeat="points in foundPointsByStudent">
+                <td ng-if="points.studentId==student._id">{{points}}</td> &lt;!&ndash; er denne students_id == pointens student_id &ndash;&gt;
+            </div>-->
+            <td ng-repeat="points in foundPointsByStudent">
+
+                {{foundPointsByStudent[points]}}test
+
+            </td>
                                                                   <!--Det er jo points der skal tildeles hver Task så ?! -->
         </tr>
       </tbody>
@@ -110,6 +101,6 @@
     <!--<div class="form-group">-->
     <!--<button type="submit" ng-click="saveStudent()"  class="btn btn-primary">Save</button>-->
     <!--</div>-->
-    <!--</div>-->
+    </div>
 
 </div>

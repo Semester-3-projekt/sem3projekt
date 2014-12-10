@@ -7,6 +7,7 @@ function remove() {
     model.taskModel.remove({}).exec();
     model.periodModel.remove({}).exec();
     model.studentsModel.remove({}).exec();
+
 }
 
 function insert() {
@@ -24,102 +25,122 @@ function insert() {
         {
             "_id": 1,
             "value": 5,
-            "studentId": 1
+            "studentId": 1,
+            "taskId" : 1
         },
         {
             "_id": 2,
             "value": 3,
-            "studentId": 2
+            "studentId": 2,
+            "taskId" : 1
         },
         {
             "_id": 3,
             "value": 2,
-            "studentId": 3
+            "studentId": 3,
+            "taskId" : 1
         },
         {
             "_id": 4,
             "value": 1,
-            "studentId": 4
+            "studentId": 4,
+            "taskId" : 1
         },
         {
             "_id": 5,
             "value": 3,
-            "studentId": 5
+            "studentId": 5,
+            "taskId" : 1
         },
         {
             "_id": 6,
             "value": 2,
-            "studentId": 6
+            "studentId": 6,
+            "taskId" : 1
         },
         {
             "_id": 7,
             "value": 3,
-            "studentId": 7
+            "studentId": 7,
+            "taskId" : 1
         },
         {
             "_id": 8,
             "value": 2,
-            "studentId": 8
+            "studentId": 8,
+            "taskId" : 1
         },
         {
             "_id": 9,
             "value": 2,
-            "studentId": 9
+            "studentId": 9,
+            "taskId" : 1
         },
         {
             "_id": 10,
             "value": 1,
-            "studentId": 10
+            "studentId": 10,
+            "taskId" : 1
         },
         {
             "_id": 11,
             "value": 2,
-            "studentId": 11
+            "studentId": 11,
+            "taskId" : 1
         },
         {
             "_id": 12,
             "value": 3,
-            "studentId": 12
+            "studentId": 12,
+            "taskId" : 1
         },
         {
             "_id": 13,
             "value": 4,
-            "studentId": 13
+            "studentId": 13,
+            "taskId" : 1
         },
         {
             "_id": 14,
             "value": 1,
-            "studentId": 14
+            "studentId": 14,
+            "taskId" : 1
         },
         {
             "_id": 15,
             "value": 3,
-            "studentId": 15
+            "studentId": 15,
+            "taskId" : 1
         },
         {
             "_id": 16,
             "value": 2,
-            "studentId": 16
+            "studentId": 16,
+            "taskId" : 1
         },
         {
             "_id": 17,
             "value": 6,
-            "studentId": 17
+            "studentId": 17,
+            "taskId" : 1
         },
         {
             "_id": 18,
             "value": 3,
-            "studentId": 18
+            "studentId": 18,
+            "taskId" : 1
         },
         {
             "_id": 19,
             "value": 2,
-            "studentId": 19
+            "studentId": 19,
+            "taskId" : 1
         },
         {
             "_id": 20,
             "value": 1,
-            "studentId": 20
+            "studentId": 20,
+            "taskId" : 1
         }
     ];
     var periods = [
@@ -301,72 +322,81 @@ function insert() {
             "firstName": "Prescott",
             "lastName": "Farmer",
             "userName": "auctor",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 12,
             "firstName": "Ciara",
             "lastName": "Cooley",
             "userName": "vulputate",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 13,
             "firstName": "Ava",
             "lastName": "Farrell",
             "userName": "quis",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 14,
             "firstName": "Leo",
             "lastName": "Doyle",
             "userName": "dolor.",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 15,
             "firstName": "Oren",
             "lastName": "Carver",
             "userName": "tincidunt.",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 16,
             "firstName": "Sylvia",
             "lastName": "Franks",
             "userName": "felis.",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 17,
             "firstName": "Rhea",
             "lastName": "Oconnor",
             "userName": "mauris",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 18,
             "firstName": "Alea",
             "lastName": "Maddox",
             "userName": "sociis",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 19,
             "firstName": "Hayden",
             "lastName": "Cooley",
             "userName": "ut,",
-            "classId": 1
+            "classId": 2
         },
         {
             "_id": 20,
             "firstName": "Lilah",
             "lastName": "Schwartz",
             "userName": "eget",
-            "classId": 1
+            "classId": 2
         }
     ];
+
+    var myclassessx = 0;
+    myclasses.forEach(function (myclasses) {
+        myclasses.classId = 1;
+        var newClasses = new model.classesModel(myclasses);
+        newClasses.save();
+        myclassessx++;
+    });
+    console.log(studentsx + " students saved");
 
     var studentsx = 0;
     students.forEach(function (student) {
@@ -406,5 +436,5 @@ function insert() {
     console.log(pointsx + " points saved");
 }
 
-//remove();
+// remove();
 insert();

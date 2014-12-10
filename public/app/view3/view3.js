@@ -28,6 +28,32 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
           });
 
+        /************Get student by class A or B *************/
+        $scope.getStudentsByClass = function(classId) {
+
+            $http({
+                method: 'GET',
+                url: 'adminApi/getStudentsByClass/'+ classId
+            }).
+                success(function (data, status, header, config) {
+                    $scope.foundStudents = data;
+                    for(var i in data){
+                        $scope.getStudyPointByStudentId(data[i]._id)
+                    }
+
+                    $scope.error = null;
+                }).
+                error(function (data, status, headers, config) {
+                    if (status == 401) {
+                        $scope.error = "You are not authenticated to request these data";
+                        return;
+                    }
+                    $scope.error = data;
+
+                });
+
+        }
+
 /************Get specifik Student*************/
         $http({
             method: 'GET',
@@ -63,24 +89,27 @@ angular.module('myAppRename.view3', ['ngRoute'])
             });
 
 
-        //****************Server getPeriod  ****************//
+        //****************Server getPeriod  **************** //
+            $scope.getPeriod = function(periodNumber){
+                $http({
+                    method: 'GET',
+                    url: 'adminApi/getPeriod/'+periodNumber
 
-        $http({
-            method: 'GET',
-            url: 'adminApi/getPeriod'
-        }).
-            success(function (data, status, headers, config) {
-                $scope.foundPeriod = data;
-                $scope.error = null;
-            }).
-            error(function (data, status, headers, config) {
-                if (status == 401) {
-                    $scope.error = "You are not authenticated to request these data";
-                    return;
-                }
-                $scope.error = data;
+                }).
+                    success(function (data, status, headers, config) {
+                        $scope.foundPeriod = data;
+                        $scope.error = null;
+                    }).
+                    error(function (data, status, headers, config) {
+                        if (status == 401) {
+                            $scope.error = "You are not authenticated to request these data";
+                            return;
+                        }
+                        $scope.error = data;
 
-            });
+                    });
+            }
+
 
 
         //****************Server getPeriodSSSS  ****************//
@@ -121,13 +150,12 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
             });
 
-        $http({
+  /*      $http({
             method: 'GET',
             url: 'adminApi/getTaskById'
         }).
             success(function (data, status, headers, config) {
                 $scope.foundTaskById = data;
-                /* OBS Navn på $Scope foundTaskById !! */
                 $scope.error = null;
             }).
             error(function (data, status, headers, config) {
@@ -138,25 +166,29 @@ angular.module('myAppRename.view3', ['ngRoute'])
                 $scope.error = data;
 
             });
-        $scope.getTaskInPeriods()
+*/
+       // $scope.getTaskInPeriods()
+        $scope.foundPointsByStudent =[];
+        $scope.getStudyPointByStudentId = function(studentId){
 
-
-        $http({
-            method: 'GET',
-            url: 'adminApi/getStudyPointById'
-        }).
-            success(function (data, status, headers, config) {
-                $scope.foundpointById = data;               /* OBS Navn på $Scope foundTaskById !! */
-                $scope.error = null;
+            $http({
+                method: 'GET',
+                url: 'adminApi/getStudyPointByStudentId/'+studentId
             }).
-            error(function (data, status, headers, config) {
-                if(status == 401){
-                    $scope.error ="You are not authenticated to request these data";
-                    return;
-                }
-                $scope.error = data;
+                success(function (data, status, headers, config) {
+                    $scope.foundPointsByStudent.push(data);
+                    $scope.error = null;
+                }).
+                error(function (data, status, headers, config) {
+                    if(status == 401){
+                        $scope.error ="You are not authenticated to request these data";
+                        return;
+                    }
+                    $scope.error = data;
 
-            });
+                });
+
+        }
 
 
 

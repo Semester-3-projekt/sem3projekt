@@ -76,6 +76,21 @@ function getStudent(userName,callback) {
         });
 
 };
+//********* Get  STUDENTS by class *****//
+function getStudentByClass(classId,callback) {
+    studentsModel.find({classId:classId})
+        //.populate('classId')  // dokument classes i mongodb  virker NU!
+        .exec(function(err, data){
+            if (err) callback(err);
+            else {
+                callback (null, data);
+            }
+
+        });
+
+};
+
+
 //********* Get list of TASKS*****//
 function getTasks(callback) {
     taskModel.find({}, function(err,data){
@@ -114,6 +129,7 @@ function createStudent(student, callback){
         }
     });
 };
+
 //********* Get specific StudyPointById to reference student with a task giving a value! *****//
 function getStudyPointById(_id,callback){
         pointModel.find({_id:_id})
@@ -127,6 +143,17 @@ function getStudyPointById(_id,callback){
         });
 };
 
+function getStudyPointByStudentId(studentId,callback){
+    pointModel.find({studentId:studentId})
+
+        .exec(function(err, data){
+            if(err)
+                callback(err);
+            else{
+                callback(null,data)
+            }
+        });
+};
 
 
 module.exports = {
@@ -137,12 +164,11 @@ module.exports = {
     getTaskById: getTaskById,
     getPeriods: getPeriods,
     getPeriod: getPeriod,
-    getStudyPointById: getStudyPointById
-    getPeriod: getPeriod,
     createStudent: createStudent,
-    getTaskInPeriods: getTaskInPeriods
-    getPeriod: getPeriod,
-    getStudyPointById: getStudyPointById
+    getTaskInPeriods: getTaskInPeriods,
+    getStudyPointById: getStudyPointById,
+    getStudyPointByStudentId: getStudyPointByStudentId,
+    getStudentByClass: getStudentByClass
      //exporterer
 
 };

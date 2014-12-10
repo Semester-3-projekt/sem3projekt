@@ -67,6 +67,8 @@ router.get('/getPeriods', function(req,res){
 
     });
 });
+
+
 /************ get one specifik PERIOD *****/
 router.get('/getPeriod/:periodNumber', function(req, res) {
     //console.log(number)
@@ -87,6 +89,8 @@ router.get('/getPeriod/:periodNumber', function(req, res) {
         res.send(JSON.stringify(data));
     });
 });
+
+
 /* GET A User From The DataBase, fordi at kun en user skal ses i view3 ((er også i view2)) !*/
 router.get('/getStudent/:student', function(req, res) {
     if(typeof global.mongo_error !== "undefined"){
@@ -160,6 +164,23 @@ router.get('/getTaskInPeriods/:_id', function (req, res) {
         res.send(JSON.stringify(data));
     });
 });
+
+router.get('/getStudentsByClass/:classId', function (req, res) {
+    var classId = req.params.classId;
+    dbLayer.getStudentByClass(classId,function (err, data) {
+        if (err) {
+            res.status(err.status || 400);
+            res.send(JSON.stringify({error: err.toString()}));
+            return;
+        }
+        console.log(data);
+        res.header("Content-type", "application/json");
+        res.send(JSON.stringify(data));
+    });
+});
+
+
+
 /* GET A specifik StudyPoint in The DataBase !*/
 router.get('/getStudyPointById/:_id', function(req, res){
     if(typeof global.mongo_error !== "undefined"){
@@ -181,6 +202,26 @@ router.get('/getStudyPointById/:_id', function(req, res){
     });
 
 })
+
+router.get('/getStudyPointByStudentId/:studentId', function(req, res) {
+    if (typeof global.mongo_error !== "undefined") {
+        res.status(500);
+        res.end("Error: " + global.mongo_error + " U have to be logget ind! But fungtion: getStudyPointById/STudiId didnt succed!(see model-->db.js for instructions)");
+        return;
+    }
+    var studentId = req.params.studentId;
+    dbLayer.getStudyPointByStudentId(studentId, function (err, data) {
+        if (err) {
+            res.status(err.status || 400);
+            res.send(JSON.stringify({error: err.toString()}));
+            return;
+        }
+        res.header("Content-type", "application/json");
+        res.send(JSON.stringify(data));
+
+    });
+})
+
 /*Slut*/
 
 
