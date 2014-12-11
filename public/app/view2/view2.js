@@ -29,8 +29,6 @@ angular.module('myAppRename.view2', ['ngRoute'])
 
           });
  //-----------Get the tasks----------------------------
-
-
       $http({
         method: 'GET',
         url: 'userApi/getTasks/'+studentId
@@ -46,7 +44,7 @@ angular.module('myAppRename.view2', ['ngRoute'])
         }
         $scope.error = data;
       });
-
+//----------get the class-------------------------------
     $http({
         method: 'GET',
         url: 'userApi/getClass/'+studentId
@@ -62,5 +60,5 @@ angular.module('myAppRename.view2', ['ngRoute'])
             }
             $scope.error = data;
         });
-
+//-----------------------------------------------------------
   }]);
