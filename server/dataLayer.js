@@ -5,23 +5,22 @@ var periodModel = require('./model/db').periodModel;
 var pointModel = require('./model/db').pointModel;
 
 
-
 function getStudents(callback) {
     studentsModel.find({}, function (err, data) {
         if (err) callback(err);
         else {
-            callback (null, data);
+            callback(null, data);
         }
     });
 };
 
 /***********Get list of CLASSES********/
-function getClasses(callback)  {
+function getClasses(callback) {
     classesModel.find({}, function (err, data) {
         if (err)
             callback(err);
         else {
-            callback (null, data)
+            callback(null, data)
         }
     });
 
@@ -29,61 +28,61 @@ function getClasses(callback)  {
 
 
 //********* Get list of PERIODS *****//
-function getPeriods(callback){
-    periodModel.find({}, function(err,data){
-        if(err)
+function getPeriods(callback) {
+    periodModel.find({}, function (err, data) {
+        if (err)
             callback(err);
-        else{
-            callback(null,data)
+        else {
+            callback(null, data)
         }
     });
 };
 //********* Get specific PERIOD *****//
-function getPeriod(periodNumber,callback){
-    periodModel.find({number:periodNumber})
+function getPeriod(periodNumber, callback) {
+    periodModel.find({number: periodNumber})
         //.populate('NOGET_Id')  // Hvad der kan populates!
-        .exec(function(err,data){
-        if(err)
-            callback(err);
-        else{
-            callback(null,data);
-        }
-    });
+        .exec(function (err, data) {
+            if (err)
+                callback(err);
+            else {
+                callback(null, data);
+            }
+        });
 };
 //********* Get tasks in periods *******//
-function getTaskInPeriods(period, callback){
-    taskModel.find({periodId:period})
+function getTaskInPeriods(period, callback) {
+    taskModel.find({periodId: period})
         .populate('period.name')
         .exec(function (err, data) {
-            if(err)
+            if (err)
                 callback(err);
-            else{
-                callback(null,data);
+            else {
+                callback(null, data);
             }
         });
 };
 
 //********* Get specific STUDENT *****//
-function getStudent(userName,callback) {
-    studentsModel.find({userName:userName})
+function getStudent(userName, callback) {
+    studentsModel.find({userName: userName})
         //.populate('classId')  // dokument classes i mongodb  virker NU!
-        .exec(function(err, data){
+        .exec(function (err, data) {
             if (err) callback(err);
             else {
-                callback (null, data);
+                callback(null, data);
             }
 
         });
 
 };
 //********* Get  STUDENTS by class *****//
-function getStudentByClass(classId,callback) {
-    studentsModel.find({classId:classId})
+function getStudentByClass(classId, callback) {
+    studentsModel.find({classId: classId})
         //.populate('classId')  // dokument classes i mongodb  virker NU!
-        .exec(function(err, data){
+        .exec(function (err, data) {
             if (err) callback(err);
             else {
-                callback (null, data);
+                callback(null, data);
             }
 
         });
@@ -93,23 +92,23 @@ function getStudentByClass(classId,callback) {
 
 //********* Get list of TASKS*****//
 function getTasks(callback) {
-    taskModel.find({}, function(err,data){
-        if(err)
-        callback(err);
-        else{
-            callback(null,data)
+    taskModel.find({}, function (err, data) {
+        if (err)
+            callback(err);
+        else {
+            callback(null, data)
         }
     });
 };     // hvor class , periode og Student er specifiseret !?
 
-function getTaskById(_id, callback){
-    taskModel.find({_id:_id})
+function getTaskById(_id, callback) {
+    taskModel.find({_id: _id})
         //.populate('classId')  // dokument classes i mongodb  virker NU!
-        .exec(function(err, data){
+        .exec(function (err, data) {
             if (err)
                 callback(err);
             else {
-                callback (null, data);
+                callback(null, data);
             }
 
         });
@@ -118,39 +117,39 @@ function getTaskById(_id, callback){
 //********* POST Specifik TASK*****//
 
 
-//********** Create student*******//
-function createStudent(student, callback){
-  var json = new model.studentsModel(student);
-    json.save(function(err, data){
-        if (err)
-            callback(err);
-        else{
-            callback(null, data);
+//********** Create new student*******//
+function createStudent(newStudent, callback) {
+    var addStudent = new studentsModel(newStudent);
+    addStudent.save(newStudent, function (err, newStudent) {
+        if(err){
+             callback (err);
         }
+        callback(null, newStudent)
     });
+
 };
 
 //********* Get specific StudyPointById to reference student with a task giving a value! *****//
-function getStudyPointById(_id,callback){
-        pointModel.find({_id:_id})
+function getStudyPointById(_id, callback) {
+    pointModel.find({_id: _id})
 
-            .exec(function(err, data){
-            if(err)
+        .exec(function (err, data) {
+            if (err)
                 callback(err);
-            else{
-                callback(null,data)
+            else {
+                callback(null, data)
             }
         });
 };
 
-function getStudyPointByStudentId(studentId,callback){
-    pointModel.find({studentId:studentId})
+function getStudyPointByStudentId(studentId, callback) {
+    pointModel.find({studentId: studentId})
 
-        .exec(function(err, data){
-            if(err)
+        .exec(function (err, data) {
+            if (err)
                 callback(err);
-            else{
-                callback(null,data)
+            else {
+                callback(null, data)
             }
         });
 };
@@ -169,6 +168,6 @@ module.exports = {
     getStudyPointById: getStudyPointById,
     getStudyPointByStudentId: getStudyPointByStudentId,
     getStudentByClass: getStudentByClass
-     //exporterer
+    //exporterer
 
 };

@@ -1,4 +1,5 @@
 var mongoose = require( 'mongoose' );
+var autoIncrement = require('mongodb-autoincrement');
 
 var dbURI;
 
@@ -69,6 +70,21 @@ var classesSchema = new mongoose.Schema({
   _id : Number,
   name : String
 });
+
+//studentsSchema.plugin(autoIncrement.plugin, 'Student');
+//pointSchema.plugin(autoIncrement.plugin, 'Point');
+//taskSchema.plugin(autoIncrement.plugin, 'Task');
+//periodSchema.plugin(autoIncrement.plugin, 'Period');
+//classesSchema.plugin(autoIncrement.plugin, 'Classes');
+
+studentsSchema.plugin(autoIncrement.mongoosePlugin);
+pointSchema.plugin(autoIncrement.mongoosePlugin);
+taskSchema.plugin(autoIncrement.mongoosePlugin);
+periodSchema.plugin(autoIncrement.mongoosePlugin);
+classesSchema.plugin(autoIncrement.mongoosePlugin);
+
+
+
 
 exports.studentsModel = mongoose.model('Student', studentsSchema, 'student');
 exports.pointModel = mongoose.model('Point', pointSchema, 'point');

@@ -1,18 +1,52 @@
 body {
-  padding: 70px;
+  background-color: #ecf0f1;
+   padding-top: 70px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-
 }
 
 a {
   color: #00B7FF;
 }
 
+.wrap{
+  background-color: #ecf0f1;
+}
+.classMenu {
+  margin: 15px;
+}
+
 .classbtn{
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
-#markStudent{
-  width:40px;
+.classes {
+  float: left;
+  margin-left: 15px;
 }
 
+
+@media {
+  .navbar-default .navbar-text {
+    color: #ecf0f1;
+  }
+}
+  .submenu{
+  margin-bottom: 15px;
+}
+
+.saveStud{
+float: right;
+}
+
+.cancelStud{
+  float: right;
+  margin-right: 10px;
+}
+
+.btnBack{
+  margin-top: 25px;
+  margin-left: 15px;
+}
+.ng-scope{
+  background-color: #ecf0f1;
+}

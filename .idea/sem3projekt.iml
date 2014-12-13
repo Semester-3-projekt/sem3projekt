@@ -7,11 +7,9 @@
     <orderEntry type="library" name="sem3projekt node_modules" level="project" />
     <orderEntry type="library" name="sem3projekt node_modules" level="project" />
     <orderEntry type="library" name="sem3projekt node_modules" level="project" />
-    <orderEntry type="library" name="angularjs-DefinitelyTyped" level="application" />
-    <orderEntry type="library" name="bootstrap-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="express-DefinitelyTyped" level="application" />
-    <orderEntry type="library" name="jasmine-DefinitelyTyped" level="application" />
-    <orderEntry type="library" name="mongoose-DefinitelyTyped" level="application" />
-    <orderEntry type="library" name="karma-jasmine-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="node-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="sem3projekt node_modules" level="project" />
+    <orderEntry type="library" name="angularjs-DefinitelyTyped" level="application" />
   </component>
 </module>

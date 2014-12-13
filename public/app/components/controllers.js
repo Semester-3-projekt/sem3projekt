@@ -20,7 +20,9 @@ angular.module('myAppRename.controllers', []).
 
 
     $scope.title = "Semester Project";
-    $scope.username = "";
+    $scope.username = "nisi.";
+    $scope.user = { username: "nisi.",
+                    password: "nisi."};
     $scope.isAuthenticated = false;
     $scope.isAdmin = false;
     $scope.isUser = false;

@@ -28,7 +28,7 @@ angular.module('myAppRename.factories', []).
         return $q.reject(rejection);
       }
     };
-  });
+  })
 
 
-;
+

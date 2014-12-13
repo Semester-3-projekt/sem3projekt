@@ -1,29 +1,12 @@
 <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
 
-<!--<div class="classes" ng-show="isAdmin">-->
-<!--<div class="row">-->
-<!--<h2>Select a class</h2>-->
-<!--<a href="#/view3/view3.html">-->
-<!--<button class="btn btn-primary classbtn" ng-repeat="class in foundClasses" ng-click="showPeriods = !showPeriods">{{class.name}}</button>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<div class="period_student" ng-show="isAdmin">
-   <!-- <div class="row">
-        <button ng-click="toggle()">Period 1</button>
-        <button ng-click="toggle()">Period 2</button>
-        <button ng-click="toggle()">Period 3</button>
-        <button ng-click="toggle()">Period 1</button>
-    </div> -->
-
-    <div ng-repeat="class in foundClasses">
-        <button ng-click="getStudentsByClass(class._id)">Class {{class.name}}</button>
-
+<div class="row classMenu">
+    <div class="classes" ng-repeat="class in foundClasses">
+        <button class="btn btn-info btn-sm classbtn" ng-click="getStudentsByClass(class._id)">Class {{class.name}}</button>
     </div>
+</div>
 
-<!-- tjeck før tabel {{foundStudents}}   -->
-
-<div class="row" ng-show="isAdmin">
+<div class="row">
 
     <div class="col-md-8">
         <table class="table table-striped">
@@ -31,76 +14,28 @@
             <tr>
                 <th>Name</th>
                 <th ng-repeat="task in foundTasks">{{task.name}}</th>
-        </tr>
-      </thead>
+            </tr>
+            </thead>
 
-      <tbody>
-        <tr ng-repeat="student in foundStudents">
+            <tbody>
+            <tr ng-repeat="student in foundStudents">
 
-          <td>{{student.firstName}} {{student.lastName}}</td>
-          <!--<td ng-repeat="task in foundTasks">{{task.name}}</td> -->
-            <!--<td ng-repeat="points in foundPointsByStudent | filter:student._id">
-                {{points.value}}
-            </td>-->
-            <!--<div ng-repeat="points in foundPointsByStudent">
-                <td ng-if="points.studentId==student._id">{{points}}</td> &lt;!&ndash; er denne students_id == pointens student_id &ndash;&gt;
-            </div>-->
-            <td ng-repeat="points in foundPointsByStudent">
+                <td>{{student.firstName}} {{student.lastName}}</td>
+                <!--<td ng-repeat="task in foundTasks">{{task.name}}</td> -->
+                <!--<td ng-repeat="points in foundPointsByStudent | filter:student._id">
+                    {{points.value}}
+                </td>-->
+                <!--<div ng-repeat="points in foundPointsByStudent">
+                    <td ng-if="points.studentId==student._id">{{points}}</td> &lt;!&ndash; er denne students_id == pointens student_id &ndash;&gt;
+                </div>-->
+                <td ng-repeat="points in foundPointsByStudent">
 
-                {{foundPointsByStudent[points]}}test
+                    {{foundPointsByStudent[points]}}
 
-            </td>
-                                                                  <!--Det er jo points der skal tildeles hver Task så ?! -->
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!--<div class="col-md-4">-->
-  <!--<form class="form-horizontal">-->
-    <!--<fieldset >-->
-    <!--<legend>New student</legend>-->
-    <!--<div class="form-group">-->
-    <!--<label for="UserName" class="control-label col-xs-3" ><span class="label label-info">User Name</span></label>-->
-    <!--<div class="col-xs-9">-->
-    <!--<input type="text" ng-model="newstudent.username" class="form-control" id="UserName" placeholder="UserName">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="firstName" class="control-label col-xs-3"><span class="label label-info">first Name</span></label>-->
-    <!--<div class="col-xs-9">-->
-    <!--<input type="text" ng-model="newstudent.firstName" class="form-control" id="firstName" placeholder="First Name">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="LastName" class="control-label col-xs-3"><span class="label label-info">Last Name</span></label>-->
-    <!--<div class="col-xs-9">-->
-    <!--<input type="text" ng-model="newstudent.lastName" class="form-control" id="LastName" placeholder="Last Name">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="role" class="control-label col-xs-3"><span class="label label-info">Role</span></label>-->
-    <!--<div class="col-xs-9">-->
-    <!--<input type="text" ng-model="newstudent.role" class="form-control" id="role" placeholder="Role">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="email" class="control-label col-xs-3"><span class="label label-info">Email</span></label>-->
-    <!--<div class="col-xs-9">-->
-    <!--<input type="text" ng-model="newstudent.email" class="form-control" id="email" placeholder="Email">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="address" class="control-label col-xs-3"><span class="label label-info">Address</span></label>-->
-    <!--<div class="col-xs-9">-->
-    <!--<input type="text" ng-model="newstudent.address" class="form-control" id="address" placeholder="address">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</fieldset>-->
-    <!--</form>-->
-    <!--<div class="form-group">-->
-    <!--<button type="submit" ng-click="saveStudent()"  class="btn btn-primary">Save</button>-->
-    <!--</div>-->
+                </td>
+                <!--Det er jo points der skal tildeles hver Task så ?! -->
+            </tr>
+            </tbody>
+        </table>
     </div>
-
 </div>
