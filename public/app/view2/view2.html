@@ -6,11 +6,12 @@
   <div class="form-horizontal">
     <fieldset>
       <legend>{{foundStudents[0].userName}}</legend>
+
       <label style="width: 6em">Name:</label>
       <div>{{foundStudents[0].lastName}}, {{foundStudents[0].firstName}}</div><br/>
 
-  <label style="width: 6em">ClassName:</label>
-  <label>{{foundStudents[0].classname}}</label><br/>
+      <label style="width: 6em">ClassName:</label>
+      <div>{{foundClass[0].name}}</div><br/>
 
     </fieldset>
   </div>
@@ -27,25 +28,18 @@
     <thead>
     <tr>
       <th>Period</th>
-      <th>Task Name</th>
+      <th ng-repeat="task in foundTasks">{{task.name}}</th>
       <th>Max Points</th>
-      <th>Description</th>
-      <th></th>
+      <th>Total Points</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="period in foundPeriod">
-    <td>{{task.periodId}}</td>
-    <td>{{task.name}}</td>
-    <td>{{task.maxPoints}}</td>
-    <td>{{task.description}}</td>
+    <th>{{task.periodId}}</th>
+    <th>{{task.maxPoints}}</th>
+    <th>{{task.maxPoints}}</th>
     </tr>
-    <!--<tr ng-repeat="task in foundTasks">-->
-      <!--<td>{{task.periodId}}</td>-->
-      <!--<td>{{task.name}}</td>-->
-      <!--<td>{{task.maxPoints}}</td>-->
-      <!--<td>{{task.description}}</td>-->
-    <!--</tr>-->
+
     </tbody>
   </table>
 </div>
