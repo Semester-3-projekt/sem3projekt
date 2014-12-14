@@ -34,9 +34,19 @@ function getClass(callback){
         }
     });
 };
+function getPeriod(callback){
+    periodModel.find({}, function(err, data){
+        if(err)
+            callback(err);
+        else{
+            callback(null, data)
+        }
+    });
+};
 
 module.exports = {
     getStudent: getStudent,
     getTasks: getTasks,
-    getClass: getClass
+    getClass: getClass,
+    getPeriod: getPeriod
 };

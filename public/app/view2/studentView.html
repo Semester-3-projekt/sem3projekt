@@ -2,7 +2,7 @@
 <br/>
 
 
-<div class="col-md-3" style="border: thin lightblue solid; border-radius: 5px;padding: 1em;">
+<div class="col-sm-3" style="border: thin lightblue solid; border-radius: 5px;padding: 1em;">
   <div class="form-horizontal">
     <fieldset>
       <legend>{{foundStudents[0].userName}}</legend>
@@ -28,18 +28,15 @@
     <thead>
     <tr>
       <th>Period</th>
-      <th ng-repeat="task in foundTasks">{{task.name}}</th>
-      <th>Max Points</th>
+      <th ng-repeat="task in foundTasks | orderBy: '_id'">{{task.name}}</th>
       <th>Total Points</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="period in foundPeriod">
-    <th>{{task.periodId}}</th>
-    <th>{{task.maxPoints}}</th>
-    <th>{{task.maxPoints}}</th>
+    <tr ng-repeat="period in foundPeriod | orderBy: '_id'">
+      <td>{{period.name}}</td>
+      <td>{{foundTask[0].name}}</td>
     </tr>
-
     </tbody>
   </table>
 </div>

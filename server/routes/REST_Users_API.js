@@ -6,7 +6,7 @@ var classes = mongoose.model('Classes');
 var period = mongoose.model('Period');
 var point = mongoose.model('Point');
 //**************************************************HUSK !!!! at require, når der referes til en model i db */
-var dbLayer = require('../UserDataLayer');
+var udbLayer = require('../UserDataLayer');
 
 router.get('/test', function(req, res) {   //  test kaldes fra   view 2 "mgs"
     res.header("Content-type","application/json");
@@ -21,7 +21,7 @@ router.get('/getStudent/:student', function(req, res) {
         return;
     }
     var requestedStudent = req.params.student;
-    dbLayer.getStudent(requestedStudent,function (err, data) {
+    udbLayer.getStudent(requestedStudent,function (err, data) {
         if (err) {
             res.status(err.status || 400);
             res.send(JSON.stringify({error: err.toString()}));
@@ -35,7 +35,7 @@ router.get('/getStudent/:student', function(req, res) {
 
 // ********** Get list of Tasks ****** ///
 router.get('/getTasks/:studentId', function(req, res) {
-    dbLayer.getTasks(function (err, data) {
+    udbLayer.getTasks(function (err, data) {
         if (err) {
             res.status(err.status || 400);
             res.send(JSON.stringify({error: err.toString()}));
@@ -50,7 +50,20 @@ router.get('/getTasks/:studentId', function(req, res) {
 
 // ********** class *** ****** ///
 router.get('/getClass/:studentId', function(req, res) {
-    dbLayer.getClass(function (err, data) {
+    udbLayer.getClass(function (err, data) {
+        if (err) {
+            res.status(err.status || 400);
+            res.send(JSON.stringify({error: err.toString()}));
+            return;
+        }
+        console.log(data);
+        res.header("Content-type","application/json");
+        res.send(JSON.stringify(data));
+    });
+});
+
+router.get('/getPeriod/:studentId', function(req, res) {
+    udbLayer.getPeriod(function (err, data) {
         if (err) {
             res.status(err.status || 400);
             res.send(JSON.stringify({error: err.toString()}));

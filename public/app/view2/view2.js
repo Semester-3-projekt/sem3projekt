@@ -60,5 +60,36 @@ angular.module('myAppRename.view2', ['ngRoute'])
             }
             $scope.error = data;
         });
-//-----------------------------------------------------------
+//---------get the period--------------------------------
+        $http({
+            method: 'GET',
+            url: 'userApi/getPeriod/'+studentId
+        })
+            .success(function (data, status, headers, config) {
+                $scope.foundPeriod = data;
+                $scope.error = null;
+            }).
+            error(function (data, status, headers, config) {
+                if (status == 401) {
+                    $scope.error = "You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
+            });
+//---------get the points from the task from specific student--------------------------------
+        $http({
+            method: 'GET',
+            url: 'userApi/getTaskPoints/'+studentId
+        })
+            .success(function (data, status, headers, config) {
+                $scope.foundPointsByStudent = data;
+                $scope.error = null;
+            }).
+            error(function (data, status, headers, config) {
+                if (status == 401) {
+                    $scope.error = "You are not authenticated to request these data";
+                    return;
+                }
+                $scope.error = data;
+            });
   }]);
