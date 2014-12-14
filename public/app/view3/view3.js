@@ -4,7 +4,7 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/view3', {
-            templateUrl: 'app/view3/view3.html',
+            templateUrl: 'app/view3/teacherView.html',
             controller: 'View3Ctrl'
         });
     }])
@@ -200,7 +200,7 @@ angular.module('myAppRename.view3', ['ngRoute'])
     })
 
 // controller til create new student
-    .controller('CreateStudentCtrl', function ($scope, $http) {
+    .controller('CreateStudentCtrl', function ($scope, $http, $window) {
 
         $scope.title = 'Create new student';
 
@@ -229,15 +229,14 @@ angular.module('myAppRename.view3', ['ngRoute'])
                 userName: $scope.newStudent.userName,
                 firstName: $scope.newStudent.firstName,
                 lastName: $scope.newStudent.lastName,
-                classId: $scope.newStudent.classes._id
+                classId: $scope.newStudent.classes
             };
 
             $http.post('adminApi/createStudent', newStudent)
                 .success(function (data, status, headers, config) {
-                  console.log('success!');
-                   //$scope.newStudent = 'true';
-                   //$scope.newStudent = {};
-                })
+                    $scope.newStudent = {};
+                    $window.alert('Student successfully saved!');
+                 })
                 .error(function (data, status, headers, config) {
                     if (status == 401) {
                         $scope.error = "FAILED to add a student";
@@ -245,6 +244,7 @@ angular.module('myAppRename.view3', ['ngRoute'])
                     }
                     $scope.error = data;
                 })
+            $scope.newStudent = {};
         };
 
         $scope.cancel = function () {

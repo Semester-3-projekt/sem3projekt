@@ -4,7 +4,7 @@ angular.module('myAppRename.view2', ['ngRoute'])
 
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/view2', {
-      templateUrl: 'app/view2/view2.html',
+      templateUrl: 'app/view2/studentView.html',
       controller: 'View2Ctrl'
     });
   }])
